@@ -8,6 +8,8 @@ donkey/donkey-test
 .sonar
 **/junit-reports
 **/code-coverage-reports
+.gradle
+.vscode
 
 # /client/
 /client/logs
