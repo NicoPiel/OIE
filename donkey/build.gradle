@@ -1,7 +1,7 @@
 // donkey/build.gradle
 
 plugins {
-    // Plugins applied in root: java-library, jacoco
+    // Plugins applied in root: java-library
     // No need to re-apply here unless overriding
 }
 
@@ -44,9 +44,8 @@ dependencies {
     // Guice (Assume 'implementation' scope)
     implementation 'com.google.inject:guice:4.1.0'
 
-    // NOTE: All common compileOnly, testImplementation, testRuntimeOnly dependencies
-    // and the jacocoAgent configuration are now handled by the root build.gradle's
-    // subprojects block. No need to repeat them here.
+    // NOTE: All common compileOnly and test dependencies are now handled
+    // by the root build.gradle's subprojects block.
 }
 
 // --- Task Configurations specific to Donkey ---
@@ -100,5 +99,3 @@ tasks.named('test', Test) {
     minHeapSize = "128m" // Can likely remove if defaults or root config is enough
     maxHeapSize = "2048m" // Or '2g'. Common config is in root. Keep ONLY if Donkey needs more.
 }
-
-// No need for Jacoco task configuration here, it's handled in the root project.
