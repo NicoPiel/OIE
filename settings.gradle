@@ -1,0 +1,1 @@
+include 'donkey', 'server', 'webadmin', 'client', 'manager', 'cli'
