@@ -1,0 +1,7 @@
+plugins {
+    id 'java'
+}
+
+ant.importBuild('build.xml') { antTargetName -> 
+    'ant' + antTargetName
+}

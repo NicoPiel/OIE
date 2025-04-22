@@ -10,6 +10,7 @@ donkey/donkey-test
 **/code-coverage-reports
 .gradle
 .vscode
+build
 
 # /client/
 /client/logs

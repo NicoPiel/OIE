@@ -1,18 +1,7 @@
 plugins {
-    id 'war'
     id 'java'
 }
 
-dependencies {
-    // Dependencies from webadmin/build.xml
-    providedCompile 'javax.servlet:javax.servlet-api:3.1.0' // Example, adjust based on actual versions
-    implementation files('../server/setup/client-lib/mirth-client-core.jar')
-    implementation files('../donkey/setup/donkey-model.jar')
-    // Add other dependencies as needed
+ant.importBuild('build.xml') { antTargetName -> 
+    'ant' + antTargetName
 }
-
-war {
-    archiveName = 'webadmin.war'
-}
-
-// Task for JSP compilation if needed, but Gradle handles it with War plugin

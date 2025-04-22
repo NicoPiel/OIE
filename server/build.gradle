@@ -2,32 +2,6 @@ plugins {
     id 'java'
 }
 
-dependencies {
-    // Dependencies from server/lib and other projects
-    implementation files('../lib/*.jar')
-    implementation project(':donkey') // Assuming dependency on donkey module
-}
-
-task compileServer(type: JavaCompile) {
-    // Custom compile task if needed, but use default compileJava
-}
-
-task createConnectors(type: Jar) {
-    // Task to create connector JARs, e.g., for dicom, jdbc, etc.
-    // This may require multiple JAR tasks or source sets
-    doLast {
-        // Example: create subdirectories and JARs
-        // In practice, use Gradle's archive tasks
-    }
-}
-
-task createPlugins(type: Jar) {
-    // Task to create plugin JARs
-}
-
-jar {
-    archiveFileName = 'mirth-server.jar'
-    from sourceSets.main.output
-    include 'com/mirth/connect/server/**'
-    // Add excludes and includes based on Ant logic
+ant.importBuild('build.xml') { antTargetName -> 
+    'ant' + antTargetName
 }

@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+ant.importBuild('ant-build.xml') { antTargetName -> 
+    'ant' + antTargetName
+}
+
+// ant.properties['src'] = src
+// ant.properties['test'] = test
+// ant.properties['server'] = '../server'
+// ant.properties['donkey_src'] = '../donkey/src/main/java'
+// ant.properties['donkey_lib'] = '../donkey/lib'
+// ant.properties['classes'] = classes
+// ant.properties['test_classes'] = test_classes
+// ant.properties['lib'] = lib
+// ant.properties['logs'] = logs
+// ant.properties['dist'] = dist

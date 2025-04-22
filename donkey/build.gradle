@@ -1,11 +1,104 @@
+// donkey/build.gradle
+
 plugins {
-    id 'java'
+    // Plugins applied in root: java-library, jacoco
+    // No need to re-apply here unless overriding
 }
 
-repositories {
-    mavenCentral()
+// Group and Version inherited from root project
+
+// Configure source sets - *Keep this if non-standard*
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['donkeydbconf']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+        resources {
+            srcDirs = ['conf', 'src/test/java']
+            include 'donkey-testing.properties'
+            include '**/*.hl7'
+        }
+    }
 }
 
-jar {
-    archiveFileName = 'donkey.jar'
+// Repositories inherited from root project
+
+dependencies {
+    // --- Dependencies specific to Donkey ---
+    // These were NOT marked compileOnly earlier
+
+    // Guava (Assume 'api' scope as it's core donkey functionality)
+    implementation 'com.google.guava:guava:28.2-jre'
+
+    // Quartz (Assume 'implementation' scope)
+    implementation 'org.quartz-scheduler:quartz:2.3.2'
+
+    // Guice (Assume 'implementation' scope)
+    implementation 'com.google.inject:guice:4.1.0'
+
+    // NOTE: All common compileOnly, testImplementation, testRuntimeOnly dependencies
+    // and the jacocoAgent configuration are now handled by the root build.gradle's
+    // subprojects block. No need to repeat them here.
 }
+
+// --- Task Configurations specific to Donkey ---
+
+// Configure the standard Jar task to produce the 'donkey-model.jar' artifact
+tasks.named('jar', Jar) {
+    archiveBaseName = 'donkey'
+    archiveClassifier = 'model'
+
+    from(sourceSets.main.output) {
+        include 'com/mirth/connect/donkey/model/**'
+        include 'com/mirth/connect/donkey/util/**'
+    }
+
+    manifest {
+        attributes(
+                'Implementation-Title': 'Mirth Connect Donkey Model',
+                'Implementation-Version': project.version // Inherited version
+        )
+    }
+}
+
+// Create a separate task for the 'donkey-server.jar' artifact
+task serverJar(type: Jar) {
+    dependsOn sourceSets.main.output
+    archiveBaseName = 'donkey'
+    archiveClassifier = 'server'
+
+    from(sourceSets.main.output) {
+        include 'com/mirth/connect/donkey/server/**'
+        include 'com/mirth/connect/donkey/model/**'
+        include 'com/mirth/connect/donkey/util/**'
+    }
+
+    manifest {
+        attributes(
+                'Implementation-Title': 'Mirth Connect Donkey Server',
+                'Implementation-Version': project.version // Inherited version
+        )
+    }
+}
+
+// Ensure the serverJar task runs during the standard build process
+tasks.named('assemble') {
+    dependsOn serverJar
+}
+
+// Configure Test task - *Only add if Donkey needs specific settings*
+tasks.named('test', Test) {
+    // Example: If Donkey tests need more memory than others
+    minHeapSize = "128m" // Can likely remove if defaults or root config is enough
+    maxHeapSize = "2048m" // Or '2g'. Common config is in root. Keep ONLY if Donkey needs more.
+}
+
+// No need for Jacoco task configuration here, it's handled in the root project.

@@ -1,1 +1,34 @@
-include 'donkey', 'server', 'webadmin', 'client', 'manager', 'cli'
+      
+// settings.gradle (Groovy DSL Example)
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        // Add other plugin repositories if needed
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS) // Good practice
+    repositories {
+        mavenCentral()
+        // Add other artifact repositories if needed (JCenter is sunset, avoid if possible)
+    }
+}
+
+rootProject.name = 'mirth-connect'
+
+include 'donkey'
+include 'server'
+include 'client' // Contains main Swing client UI
+include 'cli'    // Contains the launcher/main CLI logic?
+include 'command'// Seems to contain shared CLI logic/dependencies? Analyze relationship with 'cli'.
+include 'manager' // Service manager UI
+include 'webadmin'// Simple web UI
+include 'generator'// HL7 Vocabulary Generator
+
+// 'simplesender' might be an example, include if part of the main build
+// include 'simplesender'
+
+// Rename projects if desired (optional)
+// project(':donkey').name = 'mirth-donkey'
+
+    

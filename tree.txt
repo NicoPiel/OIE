@@ -1,0 +1,10 @@
+.
+├── aopalliance-repackaged-2.4.0-b31.jar
+├── byte-buddy-1.8.8.jar
+├── byte-buddy-agent-1.8.8.jar
+├── javax.inject-2.4.0-b31.jar
+├── junit-4.8.1.jar
+├── mockito-core-2.7.9.jar
+└── objenesis-2.5.1.jar
+
+0 directories, 7 files
