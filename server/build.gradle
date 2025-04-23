@@ -188,9 +188,6 @@ dependencies {
     // Quartz (Scheduler - already declared by Donkey? Check scope/version)
     implementation 'org.quartz-scheduler:quartz:2.3.2'
 
-    // Rhino (JavaScript engine)
-    implementation 'org.mozilla:rhino:1.7.13' // Check version
-
     // Staxon (JSON <-> XML)
     implementation 'de.odysseus.staxon:staxon:1.3'
 
@@ -202,10 +199,6 @@ dependencies {
     implementation 'io.swagger.core.v3:swagger-jaxrs2:2.0.10'
     implementation 'io.swagger.core.v3:swagger-jaxrs2-servlet-initializer:2.0.10' // Check artifactId
     implementation 'org.reflections:reflections:0.9.10' // Dependency of Swagger
-
-    // Velocity (Templating)
-    implementation 'org.apache.velocity:velocity-engine-core:2.3'
-    implementation 'org.apache.velocity.tools:velocity-tools-generic:3.1'
 
     // Xerces (XML Parser implementation)
     implementation 'xerces:xercesImpl:2.12.2' // Generally rely on JDK's parser unless specific features needed

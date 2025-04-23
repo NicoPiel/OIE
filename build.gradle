@@ -50,6 +50,9 @@ subprojects {
         implementation 'org.apache.httpcomponents:httpmime:4.5.13'
         implementation 'ca.juliusdavies:not-yet-commons-ssl:0.3.11'
 
+        // Rhino (JavaScript engine)
+        implementation 'org.mozilla:rhino:1.7.13'
+
 
         implementation 'com.thoughtworks.xstream:xstream:1.4.20'
         implementation 'xpp3:xpp3:1.1.4c'
@@ -78,18 +81,6 @@ subprojects {
         testImplementation 'org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b31'
         testImplementation 'javax.inject:javax.inject:1'
 
-        // Provide implementations for compileOnly dependencies needed during testing
-        testImplementation 'org.apache.commons:commons-lang3:3.13.0'
-        testImplementation 'commons-io:commons-io:2.13.0'
-        testImplementation 'org.apache.commons:commons-collections4:4.4'
-        testImplementation 'org.apache.commons:commons-dbcp2:2.0.1'
-        testImplementation 'commons-beanutils:commons-beanutils:1.9.4'
-        testImplementation 'commons-codec:commons-codec:1.16.0'
-        testImplementation 'org.apache.commons:commons-pool2:2.3'
-        testImplementation 'commons-dbutils:commons-dbutils:1.7'
-        testImplementation 'org.apache.commons:commons-math3:3.0'
-        testImplementation 'commons-logging:commons-logging:1.2'
-        testImplementation 'com.thoughtworks.xstream:xstream:1.4.20'
         // xpp3 is transitive via xstream
         testImplementation 'com.zaxxer:HikariCP:2.5.1'
         testImplementation 'org.javassist:javassist:3.26.0-GA'
@@ -97,5 +88,9 @@ subprojects {
         // Provide Logging implementation & binding for tests
         testRuntimeOnly 'org.apache.logging.log4j:log4j-core:2.17.2'
         testRuntimeOnly 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.2'
+
+        // Velocity (Templating)
+        implementation 'org.apache.velocity:velocity-engine-core:2.3'
+        implementation 'org.apache.velocity.tools:velocity-tools-generic:3.1'
     }
 }
