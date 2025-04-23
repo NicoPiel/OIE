@@ -605,6 +605,7 @@ build
 # /simplesender/src/com/mirth/connect/simplesender/
 
 # /webadmin/
+/webadmin/bin
 /webadmin/build
 /webadmin/dist
 
