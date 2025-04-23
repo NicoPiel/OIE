@@ -21,7 +21,6 @@ rootProject.name = 'mirth-connect'
 include 'donkey'
 include 'server'
 include 'client' // Contains main Swing client UI
-include 'cli'    // Contains the launcher/main CLI logic?
 include 'command'// Seems to contain shared CLI logic/dependencies? Analyze relationship with 'cli'.
 include 'manager' // Service manager UI
 include 'webadmin'// Simple web UI
