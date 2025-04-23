@@ -1,7 +1,45 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
-ant.importBuild('ant-build.xml') { antTargetName -> 
-    'ant' + antTargetName
+dependencies {
+    implementation project(':donkey')
+    implementation project(':server')
+
+    implementation 'com.miglayout:miglayout-swing:4.2'
+    implementation 'com.jgoodies:looks:2.2.2'
+    implementation 'org.swinglabs:swingx-core:1.6.2-2'
+    implementation 'com.miglayout:miglayout-swing:4.2'
+
+    runtimeOnly project(path: ':server', configuration: 'runtimeElements') // Ensures server classes & resources are available
 }
+
+application {
+    mainClass = 'com.mirth.connect.manager.Manager'
+}
+
+distributions {
+    main {
+        distributionBaseName = 'mirth-manager' // Name of the zip/tar file
+    }
+}
+
+// Configure the main JAR task
+tasks.named('jar', Jar) {
+    archiveBaseName = 'mirth-manager'
+    archiveClassifier = 'app'
+    manifest {
+        attributes(
+            'Implementation-Title': 'Mirth Connect Manager'
+        )
+    }
+}
+
+// In manager/build.gradle, within the application { ... } block or separately:
+tasks.named('run', JavaExec) {
+    workingDir = project(':server').projectDir
+}
+
+// Build depends on distribution assembly
+tasks.build.dependsOn(tasks.distTar, tasks.distZip)
