@@ -11,6 +11,8 @@ donkey/donkey-test
 .gradle
 .vscode
 build
+*.classpath
+*.project
 
 # /client/
 /client/logs
