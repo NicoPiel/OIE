@@ -2,6 +2,151 @@ plugins {
     id 'java'
 }
 
-ant.importBuild('build.xml') { antTargetName -> 
-    'ant' + antTargetName
+// Define directory variables
+def generatorClassesDir = project.file("${project.buildDir}/classes/java/generator")
+def vocabGeneratedSrcDir = project.file("${project.buildDir}/generated-sources/vocab")
+def vocabClassesDir = project.file("${project.buildDir}/classes/java/vocab")
+def vocabVersion = '1.2'
+def referenceDir = project.file('reference')
+def templatesDir = project.file('templates')
+
+// Make them available to ext for tasks that use ext properties
+ext {
+    generatorClassesDir = generatorClassesDir
+    vocabGeneratedSrcDir = vocabGeneratedSrcDir
+    vocabClassesDir = vocabClassesDir
+    vocabVersion = vocabVersion
+    referenceDir = referenceDir
+    templatesDir = templatesDir
 }
+
+// --- Configurations ---
+// Create a configuration to hold the generator's runtime classpath
+configurations {
+    generatorRuntimeClasspath {
+        canBeConsumed = false
+        canBeResolved = true
+        // Inherit dependencies declared in root build
+        extendsFrom configurations.implementation
+    }
+}
+
+// Define dependencies
+dependencies {
+    // Add local jar dependencies from lib directory
+    // implementation fileTree(dir: 'lib', include: '*.jar')
+    
+    // Add specific dependencies needed by the generator
+    implementation 'org.apache.velocity:velocity-engine-core:2.3'
+}
+
+// --- Source Sets ---
+// Only use standard 'main' source set for generator code
+sourceSets {
+    main {
+        java {
+            srcDirs = [project.file('src/main/java')]
+        }
+        resources {
+            srcDirs = [project.file('src/main/resources')]
+        }
+    }
+}
+
+// --- Tasks ---
+
+// Step 1: Compile the generator code
+task compileGeneratorCode(type: JavaCompile) {
+    description = 'Compiles the generator code'
+    source = sourceSets.main.java.srcDirs
+    // Add test dependencies to classpath for main compilation since tests are in src/main/java
+    classpath = configurations.compileClasspath + configurations.testRuntimeClasspath
+    destinationDirectory.set(generatorClassesDir)
+    // Standard Java compile options
+    sourceCompatibility = project.hasProperty('sourceCompatibility') ? project.sourceCompatibility : '1.8'
+    targetCompatibility = project.hasProperty('targetCompatibility') ? project.targetCompatibility : '1.8'
+}
+
+// Step 2: Process resources for generator
+task processGeneratorResources(type: Copy) {
+    description = 'Processes resources for the generator'
+    from sourceSets.main.resources.srcDirs
+    into "${project.buildDir}/resources/main"
+}
+
+// Step 3: Generate vocabulary source code
+task generateVocabSource(type: JavaExec) {
+    description = 'Generates the HL7 v2 vocabulary source files'
+    group = 'build'
+    
+    // This task needs the compiled generator code and its dependencies
+    classpath = configurations.generatorRuntimeClasspath + files(generatorClassesDir, "${project.buildDir}/resources/main")
+    
+    mainClass = 'com.mirth.connect.model.generator.HL7ModelGenerator'
+    
+    // Inputs and outputs for incremental build
+    inputs.dir(referenceDir).withPathSensitivity(PathSensitivity.RELATIVE)
+    inputs.dir(templatesDir).withPathSensitivity(PathSensitivity.RELATIVE)
+    outputs.dir(vocabGeneratedSrcDir)
+    
+    // Arguments to pass to the generator
+    args = [referenceDir.name, vocabGeneratedSrcDir.absolutePath, templatesDir.name]
+    
+    // Clean up and create output directory
+    doFirst {
+        project.delete(vocabGeneratedSrcDir)
+        project.mkdir(vocabGeneratedSrcDir)
+    }
+    
+    // Explicitly depends on the generator code compilation
+    dependsOn compileGeneratorCode, processGeneratorResources
+}
+
+// Step 4: Compile the generated vocabulary code
+task compileVocabCode(type: JavaCompile) {
+    description = 'Compiles the generated vocabulary code'
+    source = vocabGeneratedSrcDir
+    classpath = configurations.compileClasspath + files(generatorClassesDir)
+    destinationDirectory.set(vocabClassesDir)
+    sourceCompatibility = project.hasProperty('sourceCompatibility') ? project.sourceCompatibility : '1.8'
+    targetCompatibility = project.hasProperty('targetCompatibility') ? project.targetCompatibility : '1.8'
+    
+    // This task depends on the source generation
+    dependsOn generateVocabSource
+}
+
+// Configure the JAR task to include both generator and vocab classes
+tasks.named('jar', Jar) {
+    description = 'Creates a JAR file of the HL7v2 vocabulary'
+    dependsOn compileVocabCode
+    
+    archiveBaseName = 'mirth-vocab'
+    archiveVersion = vocabVersion
+    archiveClassifier = null
+    
+    // Include the compiled vocab classes
+    from(vocabClassesDir)
+    
+    // Include only specific base classes from generator output
+    from(generatorClassesDir) {
+        include 'com/mirth/connect/model/hl7v2/**'
+    }
+    
+    manifest {
+        attributes(
+            'Implementation-Title': 'Mirth Connect HL7v2 Vocabulary',
+            'Implementation-Version': archiveVersion.get()
+        )
+    }
+}
+
+// Clean task
+tasks.named('clean', Delete) {
+    delete += [vocabGeneratedSrcDir, generatorClassesDir, vocabClassesDir]
+}
+
+// Make sure the build task depends on our jar
+tasks.build.dependsOn(tasks.jar)
+
+// Skip the standard Java compileJava task - we're doing compilation manually
+tasks.compileJava.enabled = false

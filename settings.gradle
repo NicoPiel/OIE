@@ -10,7 +10,12 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS) // Good practice
     repositories {
         mavenCentral()
-        // Add other artifact repositories if needed (JCenter is sunset, avoid if possible)
+        maven {         
+            url = uri("https://maven.dcm4che.org/")
+        }
+        flatDir {
+            dirs 'libs'
+        }
     }
 }
 
