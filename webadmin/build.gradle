@@ -1,7 +1,38 @@
 plugins {
     id 'java'
+    id 'war'
 }
 
-ant.importBuild('build.xml') { antTargetName -> 
-    'ant' + antTargetName
+dependencies {
+    // --- Project Dependencies ---
+    implementation project(':donkey') // Assumes standard java-library publication
+    implementation project(':server')
+
+    // --- Runtime Dependencies (from WEB-INF/lib) ---
+    // These will be packaged into WEB-INF/lib by the WAR plugin
+    implementation 'displaytag:displaytag:1.2'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation 'net.sourceforge.stripes:stripes:1.6.0'
+
+    // --- Compile Time Only Dependencies ---
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+    compileOnly 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+
+    // --- Test Dependencies --- (Inherited from root)
 }
+
+// Configure the WAR plugin
+war {
+    // Tell the plugin where the web app content is (instead of src/main/webapp)
+    from('WebContent') {
+        // Optional: configure includes/excludes if needed
+    }
+}
+
+// Testing configuration (inherited from root)
+tasks.named('test', Test) {
+   // Add specific test config for webadmin if needed
+}
+
+// Build depends on WAR task
+tasks.build.dependsOn(tasks.war)
