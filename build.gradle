@@ -5,17 +5,17 @@ plugins {
 }
 
 allprojects {
-    group = 'com.mirth.connect' // Or your organization's group
+    group = 'com.mirth.connect'
     version = rootProject.version
 }
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'jacoco' // Apply JaCoCo to all subprojects
+    // apply plugin: 'jacoco' // Apply JaCoCo to all subprojects
 
     java {
-        sourceCompatibility = JavaVersion.VERSION_1_8 // Example, verify Mirth 4.5.2's requirement
-        targetCompatibility = JavaVersion.VERSION_1_8 // Example, verify Mirth 4.5.2's requirement
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     tasks.withType(JavaCompile) {
@@ -23,8 +23,6 @@ subprojects {
     }
 
     dependencies {
-        // Common compileOnly dependencies (likely provided by server runtime)
-        // These are declared here so testImplementation below can use them easily
         implementation 'commons-beanutils:commons-beanutils:1.9.4'
         implementation 'commons-cli:commons-cli:1.2' // Older version
         implementation 'commons-codec:commons-codec:1.16.0'
