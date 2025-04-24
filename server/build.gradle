@@ -13,7 +13,6 @@ sourceSets {
         resources {
             // Include all resource types needed by the server
             srcDirs = [
-                'src/main/resources',      // Standard resources
                 'conf',                    // Mirth conf
                 'dbconf',                  // Database scripts/maps
                 'public_html',             // Web UI content

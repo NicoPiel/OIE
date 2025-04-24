@@ -16,6 +16,12 @@ dependencyResolutionManagement {
         maven {         
             url = uri("https://repo.clojars.org/")
         }
+        maven {         
+            url = uri("https://maven.geotoolkit.org/")
+        }
+        maven {         
+            url = uri("https://artifacts.camunda.com/artifactory/public/")
+        }
     }
 }
 

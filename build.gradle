@@ -51,9 +51,9 @@ subprojects {
         implementation 'ca.juliusdavies:not-yet-commons-ssl:0.3.11'
 
         // RSyntaxTestArea
-        implementation 'com.fifesoft:rsyntaxtextarea:3.6.0'
-        implementation 'com.fifesoft:autocomplete:3.3.2'
-        implementation 'com.fifesoft:languagesupport:3.3.0'
+        implementation 'com.fifesoft:rsyntaxtextarea:2.6.1'
+        implementation 'com.fifesoft:autocomplete:2.5.4'
+        implementation 'com.fifesoft:languagesupport:2.5.6'
 
         // Rhino (JavaScript engine)
         implementation 'org.mozilla:rhino:1.7.13'

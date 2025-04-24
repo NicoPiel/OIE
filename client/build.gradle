@@ -69,10 +69,23 @@ sourceSets {
 }
 
 dependencies {
-    implementation 'org.netbeans.api:org-openide-dialogs:RELEASE250'
-    implementation 'org.netbeans.api:org-netbeans-spi-viewmodel:RELEASE250'
+    implementation project(':donkey')
+    implementation project(':server')
+
+    implementation 'org.netbeans.modules:org-netbeans-core:RELEASE250'
+    implementation 'org.netbeans:wizard:0.998.1'
+    implementation 'com.google.javaparser:com.springsource.japa.parser:1.0.7'
+    implementation 'net.imagej:ij:1.54p'
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.50'
     implementation 'org.swinglabs:swingx-core:1.6.2-2'
     implementation 'com.miglayout:miglayout-swing:4.2'
+    implementation 'org.glassfish.jersey.core:jersey-client:2.22.1'
+    implementation 'com.kenai.nbpwr:com-sun-pdfview:1.0.5-201003191900'
+    implementation 'org.reflections:reflections:0.9.10'
+    implementation 'com.jgoodies:looks:2.2.2'
+    implementation 'org.eclipse.jetty:jetty-util:9.4.53.v20231009'
+    implementation 'software.amazon.awssdk:regions:2.15.28'
+    implementation 'org.quartz-scheduler:quartz:2.3.2'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
