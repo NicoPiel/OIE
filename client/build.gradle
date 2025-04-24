@@ -11,11 +11,8 @@ description = 'OIE Client'
 // --- Configuration ---
 
 def buildProps = new Properties()
-file('build.properties').withInputStream { buildProps.load(it) }
-def libDir = file(buildProps.getProperty('lib').replace('${basedir}', '.'))
 def srcDir = file("src/main/java") // Standard Gradle source dir assumption now
 def resDir = file("src/main/resources") // Standard resources dir
-def testSrcDir = file(buildProps.getProperty('test').replace('${basedir}', '.'))
 def mainJarName = buildProps.getProperty('client.jar') // Should be mirth-client.jar
 
 // Mapping for cases where the source directory name differs from the desired extension name
