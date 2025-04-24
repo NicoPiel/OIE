@@ -62,7 +62,7 @@ dependencies {
     // --- Project Dependencies ---
     // Assuming donkey produces 'donkey-model' and 'donkey-server' classifiers
     // Adjust if donkey just produces one JAR containing everything needed
-    implementation project(path: ':donkey', configuration: 'default') // Depends on main donkey artifact(s)
+    implementation project(':donkey')
     // Or specifically: implementation project(path: ':donkey') // relies on java-library publications
 
     implementation project(':generator') // Depends on mirth-vocab.jar
