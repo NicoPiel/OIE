@@ -96,4 +96,16 @@ subprojects {
         implementation 'org.apache.velocity:velocity-engine-core:2.3'
         implementation 'org.apache.velocity.tools:velocity-tools-generic:3.1'
     }
+
+    tasks.withType(Jar.class).configureEach {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+
+    tasks.withType(Tar.class).configureEach {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+
+    tasks.withType(Zip.class).configureEach {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
 }

@@ -1,8 +1,7 @@
 // donkey/build.gradle
 
 plugins {
-    // Plugins applied in root: java-library
-    // No need to re-apply here unless overriding
+    id 'java-library'
 }
 
 // Group and Version inherited from root project
@@ -10,42 +9,23 @@ plugins {
 // Configure source sets - *Keep this if non-standard*
 sourceSets {
     main {
-        java {
-            srcDirs = ['src/main/java']
-        }
         resources {
             srcDirs = ['donkeydbconf']
         }
     }
     test {
-        java {
-            srcDirs = ['src/test/java']
-        }
         resources {
-            srcDirs = ['conf', 'src/test/java']
+            srcDirs = ['conf']
             include 'donkey-testing.properties'
             include '**/*.hl7'
         }
     }
 }
 
-// Repositories inherited from root project
-
 dependencies {
-    // --- Dependencies specific to Donkey ---
-    // These were NOT marked compileOnly earlier
-
-    // Guava (Assume 'api' scope as it's core donkey functionality)
     implementation 'com.google.guava:guava:28.2-jre'
-
-    // Quartz (Assume 'implementation' scope)
     implementation 'org.quartz-scheduler:quartz:2.3.2'
-
-    // Guice (Assume 'implementation' scope)
     implementation 'com.google.inject:guice:4.1.0'
-
-    // NOTE: All common compileOnly and test dependencies are now handled
-    // by the root build.gradle's subprojects block.
 }
 
 // --- Task Configurations specific to Donkey ---
@@ -55,15 +35,10 @@ tasks.named('jar', Jar) {
     archiveBaseName = 'donkey'
     archiveClassifier = 'model'
 
-    from(sourceSets.main.output) {
-        include 'com/mirth/connect/donkey/model/**'
-        include 'com/mirth/connect/donkey/util/**'
-    }
-
     manifest {
         attributes(
-                'Implementation-Title': 'Mirth Connect Donkey Model',
-                'Implementation-Version': project.version // Inherited version
+            'Implementation-Title': 'Mirth Connect Donkey Model',
+            'Implementation-Version': project.version // Inherited version
         )
     }
 }
@@ -82,8 +57,8 @@ task serverJar(type: Jar) {
 
     manifest {
         attributes(
-                'Implementation-Title': 'Mirth Connect Donkey Server',
-                'Implementation-Version': project.version // Inherited version
+            'Implementation-Title': 'Mirth Connect Donkey Server',
+            'Implementation-Version': project.version // Inherited version
         )
     }
 }

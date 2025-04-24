@@ -34,6 +34,7 @@ configurations {
         attributes {
             attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_API))
             // Add other attributes if needed, e.g., capability
+            attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements, 'client-core-classes'))
         }
     }
     // Configuration for mirth-crypto.jar
@@ -42,6 +43,7 @@ configurations {
         canBeResolved = false
         attributes {
             attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_API))
+            attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements, 'crypto-classes'))
         }
     }
     // Configuration for mirth-dbconf.jar (optional, might be simpler to include in main JAR/dist)
@@ -226,8 +228,6 @@ dependencies {
     implementation 'com.openhtmltopdf:openhtmltopdf-core:1.0.9'
     implementation 'slide:slide-webdavlib:2.1'
     implementation 'org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.1.1'
-
-    // --- Test Dependencies --- (Inherited from root)
 }
 
 
@@ -336,16 +336,8 @@ tasks.named('processResources', ProcessResources) {
     // filesMatching('**/mirth-client.jnlp') { expand(...) }
 }
 
-
-// --- Testing --- (Inherited from root, add specifics if needed)
-tasks.named('test', Test) {
-    // Configure server-specific test settings if necessary
-}
-
 // --- Build Lifecycle ---
 // Ensure custom JAR tasks run during build
 tasks.named('assemble') {
     dependsOn clientCoreJar, cryptoJar, dbconfJar, userutilSourcesJar // Add other custom JARs
 }
-
-// TODO later: Add tasks for extensions, launcher, distribution, signing, Javadoc

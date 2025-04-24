@@ -46,14 +46,11 @@ def findExtensions = { File baseDir, String typePath ->
 }
 
 // Combine discovered connectors and plugins
-def discoveredExtensions = findExtensions(connectorsSrcBase, 'com/mirth/connect/connectors') +
-                          findExtensions(pluginsSrcBase, 'com/mirth/connect/plugins')
+def discoveredExtensions = findExtensions(connectorsSrcBase, 'com/mirth/connect/connectors') + findExtensions(pluginsSrcBase, 'com/mirth/connect/plugins')
 
 sourceSets {
     main {
         resources {
-            // Use standard resources dir first, then add specifics from srcDir
-            srcDirs = [resDir, file('src')] // `file('src')` for top-level log4j2
             // Explicitly include non-java files previously under src/main/java
             include 'log4j2.properties'
             include 'com/mirth/connect/client/ui/images/**'
@@ -141,13 +138,5 @@ discoveredExtensions.each { ext ->
 tasks.named('assemble') {
     extensionJarTasks.each { taskProvider ->
         dependsOn(taskProvider)
-    }
-}
-
-tasks.named('test', Test) {
-    useJUnitPlatform()
-    reports {
-        junitXml.required = true
-        html.required = true
     }
 }

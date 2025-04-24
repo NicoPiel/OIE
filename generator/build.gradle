@@ -40,19 +40,6 @@ dependencies {
     implementation 'org.apache.velocity:velocity-engine-core:2.3'
 }
 
-// --- Source Sets ---
-// Only use standard 'main' source set for generator code
-sourceSets {
-    main {
-        java {
-            srcDirs = [project.file('src/main/java')]
-        }
-        resources {
-            srcDirs = [project.file('src/main/resources')]
-        }
-    }
-}
-
 // --- Tasks ---
 
 // Step 1: Compile the generator code
@@ -92,14 +79,8 @@ task generateVocabSource(type: JavaExec) {
     // Arguments to pass to the generator
     args = [referenceDir.name, vocabGeneratedSrcDir.absolutePath, templatesDir.name]
     
-    // Clean up and create output directory
-    doFirst {
-        project.delete(vocabGeneratedSrcDir)
-        project.mkdir(vocabGeneratedSrcDir)
-    }
-    
     // Explicitly depends on the generator code compilation
-    dependsOn compileGeneratorCode, processGeneratorResources
+    dependsOn compileGeneratorCode, processGeneratorResources, processResources
 }
 
 // Step 4: Compile the generated vocabulary code
