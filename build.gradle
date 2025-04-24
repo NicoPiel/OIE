@@ -6,7 +6,7 @@ plugins {
 
 allprojects {
     group = 'com.mirth.connect'
-    version = rootProject.version
+    version = '4.5.3'
 }
 
 subprojects {

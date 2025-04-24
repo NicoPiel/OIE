@@ -86,6 +86,8 @@ dependencies {
     implementation 'org.eclipse.jetty:jetty-util:9.4.53.v20231009'
     implementation 'software.amazon.awssdk:regions:2.15.28'
     implementation 'org.quartz-scheduler:quartz:2.3.2'
+    implementation 'org.openjfx:javafx-controls:11.0.2'
+    implementation 'org.openjfx:javafx-swing:11.0.2'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
