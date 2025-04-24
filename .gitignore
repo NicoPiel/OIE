@@ -641,3 +641,4 @@ build
 
 # /webadmin/src/com/mirth/connect/webadmin/utils/
 
+.aider*
