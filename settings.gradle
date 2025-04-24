@@ -13,6 +13,9 @@ dependencyResolutionManagement {
         maven {         
             url = uri("https://maven.dcm4che.org/")
         }
+        maven {         
+            url = uri("https://repo.clojars.org/")
+        }
     }
 }
 
@@ -21,15 +24,10 @@ rootProject.name = 'mirth-connect'
 include 'donkey'
 include 'server'
 include 'client' // Contains main Swing client UI
-include 'command'// Seems to contain shared CLI logic/dependencies? Analyze relationship with 'cli'.
+include 'command'
 include 'manager' // Service manager UI
 include 'webadmin'// Simple web UI
 include 'generator'// HL7 Vocabulary Generator
 
 // 'simplesender' might be an example, include if part of the main build
 // include 'simplesender'
-
-// Rename projects if desired (optional)
-// project(':donkey').name = 'mirth-donkey'
-
-    

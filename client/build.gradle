@@ -1,7 +1,141 @@
+/*
+ * Gradle build file for the Mirth Connect Client module.
+ * Automatically discovers and builds client extensions.
+ */
 plugins {
     id 'java'
 }
 
-ant.importBuild('ant-build.xml') { antTargetName -> 
-    'ant' + antTargetName
+description = 'OIE Client'
+
+// --- Configuration ---
+
+def buildProps = new Properties()
+file('build.properties').withInputStream { buildProps.load(it) }
+def libDir = file(buildProps.getProperty('lib').replace('${basedir}', '.'))
+def srcDir = file("src/main/java") // Standard Gradle source dir assumption now
+def resDir = file("src/main/resources") // Standard resources dir
+def testSrcDir = file(buildProps.getProperty('test').replace('${basedir}', '.'))
+def mainJarName = buildProps.getProperty('client.jar') // Should be mirth-client.jar
+
+// Mapping for cases where the source directory name differs from the desired extension name
+// Key: Source directory name, Value: Desired extension name
+// def extensionNameMapping = [
+//     'dimse': 'dicom'
+//     // Add other mappings here if needed, e.g., 'someDir': 'someExtensionName'
+// ]
+
+// Base paths for extension discovery
+def connectorsSrcBase = file(srcDir.path + '/com/mirth/connect/connectors')
+def pluginsSrcBase = file(srcDir.path + '/com/mirth/connect/plugins')
+
+// --- Discover Extensions ---
+
+// Function to scan a base directory and return details about found extensions
+def findExtensions = { File baseDir, String typePath ->
+    def extensions = []
+    if (baseDir.isDirectory()) {
+        baseDir.eachDir { dir ->
+            def dirName = dir.name
+            def extensionName = dirName // extensionNameMapping.getOrDefault(dirName, dirName)
+            def packagePath = "${typePath}/${dirName}".toString() // e.g., "com/mirth/connect/connectors/jdbc"
+            extensions << [name: extensionName, packagePath: packagePath, type: (typePath.contains('connectors') ? 'connector' : 'plugin')]
+            project.logger.info "Discovered extension: name='{}', packagePath='{}'", extensionName, packagePath
+        }
+    } else {
+        project.logger.warn "Extension base directory not found: {}", baseDir
+    }
+    return extensions
+}
+
+// Combine discovered connectors and plugins
+def discoveredExtensions = findExtensions(connectorsSrcBase, 'com/mirth/connect/connectors') +
+                          findExtensions(pluginsSrcBase, 'com/mirth/connect/plugins')
+
+sourceSets {
+    main {
+        resources {
+            // Use standard resources dir first, then add specifics from srcDir
+            srcDirs = [resDir, file('src')] // `file('src')` for top-level log4j2
+            // Explicitly include non-java files previously under src/main/java
+            include 'log4j2.properties'
+            include 'com/mirth/connect/client/ui/images/**'
+            include 'com/mirth/connect/client/ui/components/rsta/*.properties'
+            include 'com/mirth/connect/client/ui/components/tag/*.html'
+            include 'com/mirth/connect/client/ui/components/tag/*.css'
+            include 'com/mirth/connect/client/ui/components/tag/*.js'
+        }
+    }
+}
+
+dependencies {
+    implementation 'org.netbeans.api:org-openide-dialogs:RELEASE250'
+    implementation 'org.netbeans.api:org-netbeans-spi-viewmodel:RELEASE250'
+    implementation 'org.swinglabs:swingx-core:1.6.2-2'
+    implementation 'com.miglayout:miglayout-swing:4.2'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+}
+
+// --- Tasks ---
+
+tasks.named('jar', Jar) {
+    archiveBaseName = 'mirth-client' // Set base name without '.jar'
+    archiveVersion = project.version // Append version automatically
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        // Add manifest attributes if needed
+    }
+
+    // Include core client classes and explicitly the base ConnectorClass
+    from(sourceSets.main.output) {
+        include 'com/mirth/connect/client/**' // Core UI, etc.
+        include 'org/**'                      // Dependencies bundled (e.g., fife, netbeans, syntax)
+        include 'com/mirth/connect/connectors/ConnectorClass.class' // The special include from Ant
+
+        // Exclude all discovered extension packages
+        discoveredExtensions.each { ext ->
+            exclude "${ext.packagePath}/**"
+        }
+    }
+}
+
+// Dynamically create JAR tasks for each discovered extension
+def extensionJarTasks = []
+discoveredExtensions.each { ext ->
+    def taskName = "jar${ext.name.capitalize().replaceAll('-', '')}Client" // e.g., jarDicomClient, jarDatatypeDelimitedClient
+    project.logger.info "Registering extension JAR task: {} for {}", taskName, ext.name
+
+    extensionJarTasks << tasks.register(taskName, Jar) {
+        group = 'Build'
+        description = "Builds the JAR for the ${ext.name} client extension."
+        archiveBaseName = ext.name         // e.g., dicom, datatype-delimited
+        archiveAppendix = 'client'         // -> dicom-client.jar
+        archiveVersion = '' // Keep version out of extension JAR names, like Ant
+
+        // Place JAR in build/extensions/<extension_name>/
+        destinationDirectory = layout.buildDirectory.dir("extensions/${ext.name}")
+
+        // Include only the classes for this specific extension
+        from(sourceSets.main.output) {
+            include "${ext.packagePath}/**"
+        }
+    }
+}
+
+// Ensure assemble depends on all extension tasks
+tasks.named('assemble') {
+    extensionJarTasks.each { taskProvider ->
+        dependsOn(taskProvider)
+    }
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+    reports {
+        junitXml.required = true
+        html.required = true
+    }
 }

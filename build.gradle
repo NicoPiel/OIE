@@ -50,9 +50,13 @@ subprojects {
         implementation 'org.apache.httpcomponents:httpmime:4.5.13'
         implementation 'ca.juliusdavies:not-yet-commons-ssl:0.3.11'
 
+        // RSyntaxTestArea
+        implementation 'com.fifesoft:rsyntaxtextarea:3.6.0'
+        implementation 'com.fifesoft:autocomplete:3.3.2'
+        implementation 'com.fifesoft:languagesupport:3.3.0'
+
         // Rhino (JavaScript engine)
         implementation 'org.mozilla:rhino:1.7.13'
-
 
         implementation 'com.thoughtworks.xstream:xstream:1.4.20'
         implementation 'xpp3:xpp3:1.1.4c'

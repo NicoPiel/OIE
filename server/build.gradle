@@ -10,7 +10,6 @@ plugins {
 // If refactor is not done, add a sourceSets block similar to previous modules.
 sourceSets {
     main {
-        java { srcDirs = ['src/main/java'] }
         resources {
             // Include all resource types needed by the server
             srcDirs = [
@@ -23,13 +22,6 @@ sourceSets {
             ]
             // Exclude specific files if necessary (e.g., javadoc sources if 'docs' contains them)
             exclude '**/javadocs/**'
-        }
-    }
-    test {
-        java { srcDirs = ['src/test/java'] } // Or 'test' if not refactored
-        resources {
-             srcDirs = ['src/test/resources', 'test'] // Include test resources and potentially test XMLs from 'test' dir
-             include '**/*.xml' // Example if test XMLs are needed
         }
     }
 }
