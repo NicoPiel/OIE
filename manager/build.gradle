@@ -1,7 +1,10 @@
 plugins {
     id 'java'
     id 'application'
+    id 'com.gradleup.shadow' version '8.3.6'
 }
+
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 dependencies {
     implementation project(':donkey')
@@ -26,8 +29,22 @@ distributions {
 }
 
 // Configure the main JAR task
-tasks.named('jar', Jar) {
+tasks.named('shadowJar', ShadowJar) {
     archiveBaseName = 'mirth-manager-launcher'
+    archiveClassifier = ''
+    archiveVersion = ''
+
+    manifest {
+        attributes(
+                'Main-Class': application.mainClass,
+                'Implementation-Title': 'Mirth Connect Manager'
+        )
+    }
+}
+
+// Configure the main JAR task
+tasks.named('jar', Jar) {
+    archiveBaseName = 'mirth-manager'
     //archiveClassifier = 'app'
     archiveVersion = ''
 

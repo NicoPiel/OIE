@@ -2,23 +2,14 @@ plugins {
     id 'java'
     id 'java-library'
     id 'application'
+    id 'com.gradleup.shadow' version '8.3.6'
 }
 
-dependencies {
-    // --- Project Dependencies ---
-    // Depends on Donkey model (published by :donkey)
-    implementation project(':donkey') // Assumes standard java-library publication from :donkey
-    // Or if donkey publishes specific artifacts:
-    // implementation project(path: ':donkey', configuration: 'modelElements') // Need config from :donkey
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-    // Depends on artifacts published by :server
-    // Try standard project dependency first - let Gradle resolve the right configuration
+dependencies {
+    implementation project(':donkey')
     implementation project(':server')
-    
-    // If specific artifacts are needed from server, uncomment one of these approaches:
-    // implementation project(path: ':server', configuration: 'default')
-    // runtimeOnly project(path: ':server', configuration: 'clientCoreElements')
-    // runtimeOnly project(path: ':server', configuration: 'cryptoElements')
 
     // Reflections
     implementation 'org.reflections:reflections:0.9.10'
@@ -28,6 +19,7 @@ dependencies {
 tasks.named('jar', Jar) {
     archiveBaseName = 'mirth-cli' // Match Ant artifact name
     archiveClassifier = null      // No classifier for the library JAR
+    archiveVersion = ''
     destinationDirectory = layout.buildDirectory.dir('libs-temp') // Output to temp dir
 
     from(sourceSets.main.output) {
@@ -37,11 +29,11 @@ tasks.named('jar', Jar) {
 }
 
 // Create a custom task for the launcher JAR (mirth-cli-launcher.jar)
-tasks.register('launcherJar', Jar) {
+tasks.named('shadowJar', ShadowJar) {
     dependsOn processResources, classes // Depend on compiled classes
     archiveBaseName = 'mirth-cli-launcher'
+    archiveClassifier = ''
     archiveVersion = ''
-    destinationDirectory = layout.buildDirectory.dir('libs-temp') // Output to temp dir
 
     from(sourceSets.main.output) {
         // Include *only* the launcher classes
@@ -55,11 +47,27 @@ tasks.register('launcherJar', Jar) {
     }
 }
 
+tasks.register('launcherJar', Jar) {
+    dependsOn processResources, classes // Depend on compiled classes
+    archiveBaseName = 'mirth-cli-launcher'
+    archiveClassifier = ''
+    archiveVersion = ''
+    destinationDirectory = layout.buildDirectory.dir('libs-temp') // Output to temp dir
+
+    from(sourceSets.main.output) {
+        // Include *only* the launcher classes
+        include 'com/mirth/connect/cli/launcher/**'
+    }
+    manifest {
+        attributes(
+                'Main-Class': 'com.mirth.connect.cli.launcher.CommandLineLauncher'
+                // No Class-Path needed - application plugin handles runtime classpath
+        )
+    }
+}
+
 application {
-    // Set the main class for the application plugin (run task, distribution scripts)
     mainClass = 'com.mirth.connect.cli.launcher.CommandLineLauncher'
-    // Set executable name if desired (defaults based on project name 'command')
-    // applicationName = 'mirth-cli'
 }
 
 // Configure the distribution
@@ -88,24 +96,6 @@ distributions {
         }
     }
 }
-
-// Make sure the distribution includes the custom launcher JAR
-tasks.named('startScripts') {
-    // The application plugin automatically figures out the classpath
-    // including all jars in the distribution's 'lib' folder.
-    // We just need to ensure the launcher JAR *is* the main jar if needed,
-    // but typically setting mainClassName is enough.
-    // If the launcher JAR needs to be explicitly set:
-    // Jar mainJarTask = tasks.named('launcherJar').get()
-    // classpath = files(mainJarTask.archiveFile) + configurations.runtimeClasspath // Complex way
-    // Let's rely on the standard behavior first.
-}
-
-
-// Clean task (inherits default behavior, add specifics if needed)
-// tasks.named('clean', Delete) {
-//     delete layout.buildDirectory.dir('libs-temp')
-// }
 
 // Ensure the custom JARs are built before the distribution is assembled
 tasks.distTar.dependsOn(jar, launcherJar)

@@ -1,7 +1,16 @@
 plugins {
-    id 'java-library' // Start with this, can add 'application' later if needed for distribution
+    id 'java' // Start with this, can add 'application' later if needed for distribution
     id 'application'
+    id 'com.gradleup.shadow' version '8.3.6'
 }
+
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
+import java.util.Locale
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 // Group and Version likely inherited from root project
 
@@ -17,46 +26,13 @@ sourceSets {
                 'dbconf',                  // Database scripts/maps
                 'public_html',             // Web UI content
                 'public_api_html',         // Swagger UI content
-                'docs'                     // Other docs included in resources
+                'docs',                    // Other docs included in resources
             ]
             // Exclude specific files if necessary (e.g., javadoc sources if 'docs' contains them)
             exclude '**/javadocs/**'
         }
     }
 }
-
-// --- Custom Configurations for Consumable Artifacts ---
-configurations {
-    // Configuration for mirth-client-core.jar
-    clientCoreElements {
-        canBeConsumed = true
-        canBeResolved = false
-        attributes {
-            attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_API))
-            // Add other attributes if needed, e.g., capability
-            attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements, 'client-core-classes'))
-        }
-    }
-    // Configuration for mirth-crypto.jar
-    cryptoElements {
-        canBeConsumed = true
-        canBeResolved = false
-        attributes {
-            attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_API))
-            attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements, 'crypto-classes'))
-        }
-    }
-    // Configuration for mirth-dbconf.jar (optional, might be simpler to include in main JAR/dist)
-    dbconfElements {
-        canBeConsumed = true
-        canBeResolved = false
-        attributes {
-             // Usually runtime as it contains resources
-            attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME))
-        }
-    }
-}
-
 
 dependencies {
     // --- Project Dependencies ---
@@ -237,6 +213,7 @@ dependencies {
 tasks.register('cryptoJar', Jar) {
     dependsOn processResources, classes // Depends on compiled classes and resources
     archiveBaseName = 'mirth-crypto'
+    archiveVersion = ''
 
     from(sourceSets.main.output) { // Include compiled classes and resources
         include 'com/mirth/commons/encryption/**'
@@ -247,6 +224,7 @@ tasks.register('cryptoJar', Jar) {
 tasks.register('clientCoreJar' , Jar) {
     dependsOn processResources, classes
     archiveBaseName = 'mirth-client-core'
+    archiveVersion = ''
 
     from(sourceSets.main.output) {
         include 'com/mirth/connect/client/core/**'
@@ -259,8 +237,9 @@ tasks.register('clientCoreJar' , Jar) {
         include 'org/glassfish/jersey/**' // Jersey classes bundled? Risky. Better to depend on Jersey JARs.
         include 'de/odysseus/staxon/**' // Staxon classes bundled? Risky. Better to depend on Staxon JAR.
         include 'net/lingala/zip4j/unzip/**' // zip4j classes bundled? Risky. Better to depend on zip4j JAR.
-        include 'version.properties' // Include generated version info
     }
+
+    from (tasks.named('generateVersionProperties'))
 }
 
 // Task to create mirth-dbconf.jar
@@ -286,15 +265,16 @@ application {
     mainClass = 'com.mirth.connect.server.launcher.MirthLauncher'
 }
 
-tasks.register('serverLauncherJar', Jar) {
+tasks.named('shadowJar', ShadowJar) {
     archiveBaseName = 'mirth-server-launcher'
+    archiveClassifier = ''
     archiveVersion = ''
 
     manifest {
         attributes 'Main-Class': application.mainClass // Good practice to set it here too
     }
 
-    from(sourceSets.main.java) {
+    from(sourceSets.main.output) {
         include 'com/mirth/connect/server/launcher/**'
         include 'com/mirth/connect/server/extprops/**'
     }
@@ -315,10 +295,10 @@ tasks.named('jar', Jar) {
         exclude 'com/mirth/connect/server/launcher/**'
         exclude 'com/mirth/connect/server/extprops/**'
         // Exclude bundled libraries (these should be dependencies, not bundled)
-        exclude 'org/mozilla/**'
-        exclude 'org/glassfish/jersey/**'
-        exclude 'de/odysseus/staxon/**'
-        exclude 'net/lingala/zip4j/unzip/**'
+        //exclude 'org/mozilla/**'
+        //exclude 'org/glassfish/jersey/**'
+        //exclude 'de/odysseus/staxon/**'
+        //exclude 'net/lingala/zip4j/unzip/**'
         // Exclude extension code (will be handled separately)
         exclude 'com/mirth/connect/connectors/**'
         exclude 'com/mirth/connect/plugins/**'
@@ -326,24 +306,77 @@ tasks.named('jar', Jar) {
     manifest { /* Add manifest details if needed */ }
 }
 
-// --- Registering Artifacts for Consumption ---
-artifacts {
-    // Map the configurations to the tasks that produce the JARs
-    clientCoreElements clientCoreJar
-    cryptoElements cryptoJar
-    dbconfElements dbconfJar
-    // The main JAR is published via the standard 'apiElements' and 'runtimeElements'
-    // The sources JAR can be added if needed, e.g., using 'java-library' plugin's features
+// Define a task to generate the version.properties file
+tasks.register('generateVersionProperties') {
+    // Use description and group for better organization
+    description = 'Generates the version.properties file with build information.'
+
+    // --- Configuration ---
+    // Define where the output file will be written.
+    // Using project.layout conventions is recommended.
+    def outputDir = project.layout.buildDirectory.dir('generated/version')
+    // Define the output file property using Gradle's lazy Property API
+    final RegularFileProperty versionFile = project.objects.fileProperty().convention(
+            outputDir.map { dir -> dir.file('version.properties') }
+    )
+
+    String currentProjectVersion = project.version.toString() // Ensure it's a string
+
+    // --- Inputs and Outputs for Incremental Build ---
+    // Declare the output file for up-to-date checks
+    outputs.file(versionFile)
+            .withPropertyName('versionFile') // Good practice for build cache diagnostics
+
+    // Declare the project version as an input
+    inputs.property('projectVersion', project.version)
+
+    // --- Task Action ---
+    doLast { // Use doLast to ensure configuration phase is complete
+        // Get necessary info inside the execution phase
+        if (currentProjectVersion == 'unspecified') {
+            logger.log(LogLevel.WARN, "Project version is 'unspecified'. Setting default in version.properties.")
+            currentProjectVersion = "0.0.0-SNAPSHOT" // Provide a default or fail build
+        }
+
+        // Get current time (consider time zone)
+        def zoneId = ZoneId.systemDefault() // Or specify one like ZoneId.of("UTC")
+        def now = ZonedDateTime.now(zoneId)
+
+        // Formatters
+        // #Tue, 06 May 2025 00:29:58 +0200
+        def timestampFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH)
+        // May 6, 2025
+        def dateFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.ENGLISH)
+
+        // Build the content
+        String content = """\
+            #${now.format(timestampFormatter)}
+
+            mirth.version=${currentProjectVersion}
+            mirth.date=${now.format(dateFormatter)}
+        """.stripIndent() // stripIndent removes leading whitespace for clean multiline strings
+
+        // Get the actual file object from the property
+        File targetFile = versionFile.get().asFile
+
+        // Ensure the parent directory exists
+        targetFile.parentFile.mkdirs()
+
+        // Write the content to the file
+        targetFile.text = content
+
+        logger.lifecycle("Generated version properties file at: ${targetFile}")
+    }
 }
 
+sourceSets.main.resources { tasks.named('generateVersionProperties').map { it.outputs.files.singleFile.parent } }
 
-// --- Resource Processing ---
-tasks.named('processResources', ProcessResources) {
-    // Generate version.properties
-    filesMatching('**/version.properties') { // Filter existing template or create new
-        expand(version: project.version, buildDate: new Date().format('MMMM d, yyyy'))
-    }
-    from(sourceSets.main.resources)
+tasks.named('processResources') {
+    dependsOn 'generateVersionProperties'
+}
+
+tasks.named('clean') {
+    delete tasks.named('generateVersionProperties').map { it.outputs.files }
 }
 
 // --- Build Lifecycle ---

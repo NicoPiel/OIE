@@ -1,9 +1,10 @@
-// build.gradle (Root Project)
-
 plugins {
     id 'base'
     id 'distribution'
+    id 'com.gradleup.shadow' version '8.3.6'
 }
+
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 allprojects {
     group = 'com.mirth.connect'
@@ -107,6 +108,10 @@ subprojects {
     tasks.withType(Zip.class).configureEach {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     }
+
+    tasks.withType(ShadowJar.class).configureEach {
+        zip64 = true
+    }
 }
 
 distributions {
@@ -127,6 +132,30 @@ distributions {
                 from(project(':server').getTasksByName('userutilSourcesJar', false))
             }
 
+            into('cli-lib') {
+                from(project(':command').getConfigurations().runtimeClasspath)
+                from(project(':command').getTasksByName('jar', false))
+                from(project(':server').getTasksByName('cryptoJar', false))
+                from(project(':server').getTasksByName('clientCoreJar', false))
+                from(project(':server').getTasksByName('userutilSourcesJar', false))
+            }
+
+            into('manager-lib') {
+                from(project(':manager').getConfigurations().runtimeClasspath)
+                from(project(':command').getTasksByName('jar', false))
+                from(project(':server').getTasksByName('cryptoJar', false))
+                from(project(':server').getTasksByName('clientCoreJar', false))
+                from(project(':server').getTasksByName('userutilSourcesJar', false))
+            }
+
+            into('server-lib') {
+                from(project(':server').getConfigurations().runtimeClasspath)
+                from(project(':command').getTasksByName('jar', false))
+                from(project(':server').getTasksByName('cryptoJar', false))
+                from(project(':server').getTasksByName('clientCoreJar', false))
+                from(project(':server').getTasksByName('userutilSourcesJar', false))
+            }
+
             into('extensions') {
                 from(project(':client').tasks.matching { Task task -> task.name ==~ /jar.*Client/ })
             }
@@ -135,9 +164,9 @@ distributions {
                 from (project('webadmin').getTasksByName('war', false))
             }
 
-            from(project(':server').getTasksByName('serverLauncherJar', false))
-            from(project(':manager').getTasksByName('jar', false))
-            from(project(':command').getTasksByName('launcherJar', false))
+            from(project(':server').getTasksByName('shadowJar', false))
+            from(project(':manager').getTasksByName('shadowJar', false))
+            from(project(':command').getTasksByName('shadowJar', false))
         }
     }
 }
