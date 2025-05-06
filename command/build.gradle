@@ -37,10 +37,10 @@ tasks.named('jar', Jar) {
 }
 
 // Create a custom task for the launcher JAR (mirth-cli-launcher.jar)
-task launcherJar(type: Jar) {
+tasks.register('launcherJar', Jar) {
     dependsOn processResources, classes // Depend on compiled classes
-    archiveBaseName = 'mirth-cli'
-    archiveClassifier = 'launcher' // -> mirth-cli-launcher.jar
+    archiveBaseName = 'mirth-cli-launcher'
+    archiveVersion = ''
     destinationDirectory = layout.buildDirectory.dir('libs-temp') // Output to temp dir
 
     from(sourceSets.main.output) {

@@ -27,10 +27,13 @@ distributions {
 
 // Configure the main JAR task
 tasks.named('jar', Jar) {
-    archiveBaseName = 'mirth-manager'
-    archiveClassifier = 'app'
+    archiveBaseName = 'mirth-manager-launcher'
+    //archiveClassifier = 'app'
+    archiveVersion = ''
+
     manifest {
         attributes(
+                'Main-Class': application.mainClass,
             'Implementation-Title': 'Mirth Connect Manager'
         )
     }

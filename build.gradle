@@ -2,6 +2,7 @@
 
 plugins {
     id 'base'
+    id 'distribution'
 }
 
 allprojects {
@@ -12,10 +13,8 @@ allprojects {
 subprojects {
     apply plugin: 'java'
 
-    java {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
@@ -107,5 +106,38 @@ subprojects {
 
     tasks.withType(Zip.class).configureEach {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+}
+
+distributions {
+    main {
+        evaluationDependsOnChildren()
+        distributionBaseName = 'OIE'
+
+        contents {
+            // Resources
+            from('server/src/main/resources')
+            from('command/src/main/resources')
+
+            into('client-lib') {
+                from(project(':client').getConfigurations().runtimeClasspath)
+                from(project(':command').getTasksByName('jar', false))
+                from(project(':server').getTasksByName('cryptoJar', false))
+                from(project(':server').getTasksByName('clientCoreJar', false))
+                from(project(':server').getTasksByName('userutilSourcesJar', false))
+            }
+
+            into('extensions') {
+                from(project(':client').tasks.matching { Task task -> task.name ==~ /jar.*Client/ })
+            }
+
+            into('webapps') {
+                from (project('webadmin').getTasksByName('war', false))
+            }
+
+            from(project(':server').getTasksByName('serverLauncherJar', false))
+            from(project(':manager').getTasksByName('jar', false))
+            from(project(':command').getTasksByName('launcherJar', false))
+        }
     }
 }

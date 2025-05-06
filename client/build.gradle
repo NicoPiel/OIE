@@ -25,6 +25,7 @@ def mainJarName = buildProps.getProperty('client.jar') // Should be mirth-client
 // Base paths for extension discovery
 def connectorsSrcBase = file(srcDir.path + '/com/mirth/connect/connectors')
 def pluginsSrcBase = file(srcDir.path + '/com/mirth/connect/plugins')
+def datatypesSrcBase = file(srcDir.path + '/com/mirth/connect/plugins/datatypes')
 
 // --- Discover Extensions ---
 
@@ -46,7 +47,7 @@ def findExtensions = { File baseDir, String typePath ->
 }
 
 // Combine discovered connectors and plugins
-def discoveredExtensions = findExtensions(connectorsSrcBase, 'com/mirth/connect/connectors') + findExtensions(pluginsSrcBase, 'com/mirth/connect/plugins')
+def discoveredExtensions = findExtensions(connectorsSrcBase, 'com/mirth/connect/connectors') + findExtensions(pluginsSrcBase, 'com/mirth/connect/plugins') + findExtensions(datatypesSrcBase, 'com/mirth/connect/plugins/datatypes')
 
 sourceSets {
     main {
@@ -93,10 +94,6 @@ tasks.named('jar', Jar) {
     archiveBaseName = 'mirth-client' // Set base name without '.jar'
     archiveVersion = project.version // Append version automatically
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        // Add manifest attributes if needed
-    }
 
     // Include core client classes and explicitly the base ConnectorClass
     from(sourceSets.main.output) {

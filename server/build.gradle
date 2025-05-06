@@ -1,6 +1,6 @@
 plugins {
     id 'java-library' // Start with this, can add 'application' later if needed for distribution
-    // Add 'maven-publish' later if publishing artifacts like client-core/crypto to a repo
+    id 'application'
 }
 
 // Group and Version likely inherited from root project
@@ -234,22 +234,19 @@ dependencies {
 // --- Task Definitions ---
 
 // Task to create mirth-crypto.jar
-task cryptoJar(type: Jar) {
+tasks.register('cryptoJar', Jar) {
     dependsOn processResources, classes // Depends on compiled classes and resources
-    archiveBaseName = 'mirth'
-    archiveClassifier = 'crypto' // -> mirth-crypto-<version>.jar
+    archiveBaseName = 'mirth-crypto'
 
     from(sourceSets.main.output) { // Include compiled classes and resources
         include 'com/mirth/commons/encryption/**'
     }
-    manifest { /* Add manifest details if needed */ }
 }
 
 // Task to create mirth-client-core.jar
-task clientCoreJar(type: Jar) {
+tasks.register('clientCoreJar' , Jar) {
     dependsOn processResources, classes
-    archiveBaseName = 'mirth'
-    archiveClassifier = 'client-core' // -> mirth-client-core-<version>.jar
+    archiveBaseName = 'mirth-client-core'
 
     from(sourceSets.main.output) {
         include 'com/mirth/connect/client/core/**'
@@ -264,28 +261,42 @@ task clientCoreJar(type: Jar) {
         include 'net/lingala/zip4j/unzip/**' // zip4j classes bundled? Risky. Better to depend on zip4j JAR.
         include 'version.properties' // Include generated version info
     }
-    manifest { /* Add manifest details if needed */ }
 }
 
 // Task to create mirth-dbconf.jar
-task dbconfJar(type: Jar) {
+tasks.register('dbconfJar', Jar) {
     dependsOn processResources // Only needs resources
-    archiveBaseName = 'mirth'
-    archiveClassifier = 'dbconf' // -> mirth-dbconf-<version>.jar
+    archiveBaseName = 'mirth-dbconf'
     from(sourceSets.main.resources) { // Include from processed resources
         include 'dbconf/**'
     }
-    manifest { /* Add manifest details if needed */ }
 }
 
 // Task to create userutil-sources.jar (example)
-task userutilSourcesJar(type: Jar) {
-    archiveBaseName = 'mirth' // Or maybe 'userutil'
-    archiveClassifier = 'userutil-sources'
+tasks.register('userutilSourcesJar', Jar) {
+    archiveBaseName = 'mirth-userutil-sources' // Or maybe 'userutil'
     from(sourceSets.main.java) { // Package sources directly
         include 'com/mirth/connect/userutil/**.java'
         include 'com/mirth/connect/server/userutil/**.java'
         exclude '**/package-info.java'
+    }
+}
+
+application {
+    mainClass = 'com.mirth.connect.server.launcher.MirthLauncher'
+}
+
+tasks.register('serverLauncherJar', Jar) {
+    archiveBaseName = 'mirth-server-launcher'
+    archiveVersion = ''
+
+    manifest {
+        attributes 'Main-Class': application.mainClass // Good practice to set it here too
+    }
+
+    from(sourceSets.main.java) {
+        include 'com/mirth/connect/server/launcher/**'
+        include 'com/mirth/connect/server/extprops/**'
     }
 }
 
@@ -332,8 +343,7 @@ tasks.named('processResources', ProcessResources) {
     filesMatching('**/version.properties') { // Filter existing template or create new
         expand(version: project.version, buildDate: new Date().format('MMMM d, yyyy'))
     }
-    // Filter mirth-client.jnlp (if needed)
-    // filesMatching('**/mirth-client.jnlp') { expand(...) }
+    from(sourceSets.main.resources)
 }
 
 // --- Build Lifecycle ---
