@@ -20,14 +20,6 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 sourceSets {
     main {
         resources {
-            // Include all resource types needed by the server
-            srcDirs = [
-                'conf',                    // Mirth conf
-                'dbconf',                  // Database scripts/maps
-                'public_html',             // Web UI content
-                'public_api_html',         // Swagger UI content
-                'docs',                    // Other docs included in resources
-            ]
             // Exclude specific files if necessary (e.g., javadoc sources if 'docs' contains them)
             exclude '**/javadocs/**'
         }
@@ -284,6 +276,7 @@ tasks.named('shadowJar', ShadowJar) {
 tasks.named('jar', Jar) {
     archiveBaseName = 'mirth-server'
     archiveClassifier = null // No classifier for the main JAR
+    archiveVersion = ''
 
     // Exclude classes/resources packaged in other specific JARs
     from(sourceSets.main.output) {
@@ -303,7 +296,11 @@ tasks.named('jar', Jar) {
         exclude 'com/mirth/connect/connectors/**'
         exclude 'com/mirth/connect/plugins/**'
     }
-    manifest { /* Add manifest details if needed */ }
+
+    from (sourceSets.main.resources) {
+        exclude '**/*'
+        include 'mirth-client.jnlp'
+    }
 }
 
 // Define a task to generate the version.properties file

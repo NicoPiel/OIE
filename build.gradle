@@ -137,7 +137,6 @@ distributions {
                 from(project(':command').getTasksByName('jar', false))
                 from(project(':server').getTasksByName('cryptoJar', false))
                 from(project(':server').getTasksByName('clientCoreJar', false))
-                from(project(':server').getTasksByName('userutilSourcesJar', false))
             }
 
             into('manager-lib') {
@@ -145,15 +144,14 @@ distributions {
                 from(project(':command').getTasksByName('jar', false))
                 from(project(':server').getTasksByName('cryptoJar', false))
                 from(project(':server').getTasksByName('clientCoreJar', false))
-                from(project(':server').getTasksByName('userutilSourcesJar', false))
             }
 
             into('server-lib') {
                 from(project(':server').getConfigurations().runtimeClasspath)
                 from(project(':command').getTasksByName('jar', false))
+                from(project(':server').getTasksByName('jar', false))
                 from(project(':server').getTasksByName('cryptoJar', false))
                 from(project(':server').getTasksByName('clientCoreJar', false))
-                from(project(':server').getTasksByName('userutilSourcesJar', false))
             }
 
             into('extensions') {

@@ -102,7 +102,7 @@ tasks.named('jar', Jar) {
     dependsOn compileVocabCode
     
     archiveBaseName = 'mirth-vocab'
-    archiveVersion = vocabVersion
+    archiveVersion = ''
     archiveClassifier = null
     
     // Include the compiled vocab classes
