@@ -282,24 +282,15 @@ tasks.named('jar', Jar) {
     from(sourceSets.main.output) {
         exclude 'com/mirth/commons/encryption/**' // In cryptoJar
         exclude 'com/mirth/connect/client/core/**' // In clientCoreJar
-        // Exclude other parts packaged in clientCoreJar if needed
         exclude 'dbconf/**' // In dbconfJar
-        // Exclude launcher classes (will be in separate JAR)
         exclude 'com/mirth/connect/server/launcher/**'
         exclude 'com/mirth/connect/server/extprops/**'
-        // Exclude bundled libraries (these should be dependencies, not bundled)
-        //exclude 'org/mozilla/**'
-        //exclude 'org/glassfish/jersey/**'
-        //exclude 'de/odysseus/staxon/**'
-        //exclude 'net/lingala/zip4j/unzip/**'
-        // Exclude extension code (will be handled separately)
         exclude 'com/mirth/connect/connectors/**'
         exclude 'com/mirth/connect/plugins/**'
     }
 
     from (sourceSets.main.resources) {
-        exclude '**/*'
-        include 'mirth-client.jnlp'
+        include 'jnlp/mirth-client.jnlp'
     }
 }
 
