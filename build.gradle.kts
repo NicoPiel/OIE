@@ -136,19 +136,19 @@ tasks.register("projectInfo") {
 tasks.register("initOrchestrator") {
     description = "Initialize orchestrator properties and directories"
     doLast {
-        // Create necessary directories
-        file("server/lib/donkey").mkdirs()
-        file("server/setup").mkdirs()
-        file("server/build").mkdirs()
-        file("server/setup/webapps").mkdirs()
-        file("server/setup/client-lib").mkdirs()
-        file("server/setup/extensions").mkdirs()
-        file("server/setup/manager-lib").mkdirs()
-        file("server/setup/cli-lib").mkdirs()
-        file("server/setup/conf").mkdirs()
-        file("server/build/webapps").mkdirs()
-        file("server/build/extensions").mkdirs()
-        file("server/build/client-lib").mkdirs()
+        // Create necessary directories using File constructor instead of file() function
+        File(projectDir, "server/lib/donkey").mkdirs()
+        File(projectDir, "server/setup").mkdirs()
+        File(projectDir, "server/build").mkdirs()
+        File(projectDir, "server/setup/webapps").mkdirs()
+        File(projectDir, "server/setup/client-lib").mkdirs()
+        File(projectDir, "server/setup/extensions").mkdirs()
+        File(projectDir, "server/setup/manager-lib").mkdirs()
+        File(projectDir, "server/setup/cli-lib").mkdirs()
+        File(projectDir, "server/setup/conf").mkdirs()
+        File(projectDir, "server/build/webapps").mkdirs()
+        File(projectDir, "server/build/extensions").mkdirs()
+        File(projectDir, "server/build/client-lib").mkdirs()
         
         println("Orchestrator directories initialized")
     }
@@ -161,22 +161,22 @@ tasks.register("build-donkey") {
     
     doLast {
         // Delete existing donkey lib directory
-        delete("server/lib/donkey")
-        file("server/lib/donkey").mkdirs()
+        delete(File(projectDir, "server/lib/donkey"))
+        File(projectDir, "server/lib/donkey").mkdirs()
         
         // Copy donkey JARs
         copy {
-            from("donkey/setup/donkey-model.jar")
-            into("server/lib/donkey")
+            from(File(projectDir, "donkey/setup/donkey-model.jar"))
+            into(File(projectDir, "server/lib/donkey"))
         }
         copy {
-            from("donkey/setup/donkey-server.jar")
-            into("server/lib/donkey")
+            from(File(projectDir, "donkey/setup/donkey-server.jar"))
+            into(File(projectDir, "server/lib/donkey"))
         }
         
         // Copy donkey lib dependencies with exclusions
         copy {
-            from("donkey/lib") {
+            from(File(projectDir, "donkey/lib")) {
                 exclude("log4j-1.2.16.jar")
                 exclude("HikariCP-java6-2.0.1.jar")
                 exclude("javassist-3.19.0-GA.jar")
@@ -184,7 +184,7 @@ tasks.register("build-donkey") {
                 exclude("commons/**")
                 exclude("database/**")
             }
-            into("server/lib/donkey")
+            into(File(projectDir, "server/lib/donkey"))
         }
         
         println("Donkey build completed and JARs copied to server/lib/donkey")
@@ -199,12 +199,12 @@ tasks.register("build-webadmin") {
     doLast {
         // Copy webadmin.war to both build and setup directories
         copy {
-            from("webadmin/build/libs/webadmin.war")
-            into("server/build/webapps")
+            from(File(projectDir, "webadmin/build/libs/webadmin.war"))
+            into(File(projectDir, "server/build/webapps"))
         }
         copy {
-            from("webadmin/build/libs/webadmin.war")
-            into("server/setup/webapps")
+            from(File(projectDir, "webadmin/build/libs/webadmin.war"))
+            into(File(projectDir, "server/setup/webapps"))
         }
         
         println("WebAdmin build completed and WAR copied to server directories")
@@ -219,10 +219,10 @@ tasks.register("build-server-extensions") {
     doLast {
         // Copy shared extension JARs to client lib
         copy {
-            from(fileTree("server/build/extensions") {
+            from(fileTree(File(projectDir, "server/build/extensions")) {
                 include("**/*-shared.jar")
             })
-            into("client/lib")
+            into(File(projectDir, "client/lib"))
             eachFile {
                 // Flatten the directory structure
                 relativePath = RelativePath(true, name)
@@ -238,23 +238,26 @@ tasks.register("build-client") {
     description = "Build client and copy JARs/extensions to server setup"
     dependsOn("build-server-extensions", ":server:createSetup")
     
+    // Capture project version during configuration time
+    val projectVersion = version.toString()
+    
     doFirst {
         // Copy required JARs to client/lib before building
         copy {
-            from("donkey/setup/donkey-model.jar")
-            into("client/lib")
+            from(File(projectDir, "donkey/setup/donkey-model.jar"))
+            into(File(projectDir, "client/lib"))
         }
         copy {
-            from("server/setup/server-lib/mirth-client-core.jar")
-            into("client/lib")
+            from(File(projectDir, "server/setup/server-lib/mirth-client-core.jar"))
+            into(File(projectDir, "client/lib"))
         }
         copy {
-            from("server/setup/server-lib/mirth-crypto.jar")
-            into("client/lib")
+            from(File(projectDir, "server/setup/server-lib/mirth-crypto.jar"))
+            into(File(projectDir, "client/lib"))
         }
         copy {
-            from("server/lib/mirth-vocab.jar")
-            into("client/lib")
+            from(File(projectDir, "server/lib/mirth-vocab.jar"))
+            into(File(projectDir, "client/lib"))
         }
     }
     
@@ -263,24 +266,24 @@ tasks.register("build-client") {
     doLast {
         // Copy client JAR to server setup
         copy {
-            from("client/build/libs/client-${project.version}.jar")
-            into("server/setup/client-lib")
+            from(File(projectDir, "client/build/libs/client-${projectVersion}.jar"))
+            into(File(projectDir, "server/setup/client-lib"))
             rename { "mirth-client.jar" }
         }
         
         // Copy client lib dependencies (excluding shared JARs and extensions)
         copy {
-            from("client/lib") {
+            from(File(projectDir, "client/lib")) {
                 exclude("*-shared.jar")
                 exclude("extensions")
             }
-            into("server/setup/client-lib")
+            into(File(projectDir, "server/setup/client-lib"))
         }
         
         // Copy client extensions to server setup
         copy {
-            from("client/dist/extensions")
-            into("server/setup/extensions")
+            from(File(projectDir, "client/dist/extensions"))
+            into(File(projectDir, "server/setup/extensions"))
         }
         
         println("Client build completed and artifacts copied to server setup")
@@ -295,16 +298,16 @@ tasks.register("build-manager") {
     doFirst {
         // Copy required JARs to manager/lib before building
         copy {
-            from("donkey/setup/donkey-model.jar")
-            into("manager/lib")
+            from(File(projectDir, "donkey/setup/donkey-model.jar"))
+            into(File(projectDir, "manager/lib"))
         }
         copy {
-            from("server/setup/server-lib/mirth-client-core.jar")
-            into("manager/lib")
+            from(File(projectDir, "server/setup/server-lib/mirth-client-core.jar"))
+            into(File(projectDir, "manager/lib"))
         }
         copy {
-            from("server/setup/server-lib/mirth-crypto.jar")
-            into("manager/lib")
+            from(File(projectDir, "server/setup/server-lib/mirth-crypto.jar"))
+            into(File(projectDir, "manager/lib"))
         }
     }
     
@@ -313,16 +316,16 @@ tasks.register("build-manager") {
     doLast {
         // Copy manager launcher JAR to server setup
         copy {
-            from("manager/build/libs/mirth-manager-launcher.jar")
-            into("server/setup")
+            from(File(projectDir, "manager/build/libs/mirth-manager-launcher.jar"))
+            into(File(projectDir, "server/setup"))
         }
         
         // Copy manager lib dependencies (excluding mirth-client.jar)
         copy {
-            from("manager/lib") {
+            from(File(projectDir, "manager/lib")) {
                 exclude("mirth-client.jar")
             }
-            into("server/setup/manager-lib")
+            into(File(projectDir, "server/setup/manager-lib"))
         }
         
         println("Manager build completed and artifacts copied to server setup")
@@ -337,16 +340,16 @@ tasks.register("build-cli") {
     doFirst {
         // Copy required JARs to CLI lib before building
         copy {
-            from("donkey/setup/donkey-model.jar")
-            into("command/lib")
+            from(File(projectDir, "donkey/setup/donkey-model.jar"))
+            into(File(projectDir, "command/lib"))
         }
         copy {
-            from("server/setup/server-lib/mirth-client-core.jar")
-            into("command/lib")
+            from(File(projectDir, "server/setup/server-lib/mirth-client-core.jar"))
+            into(File(projectDir, "command/lib"))
         }
         copy {
-            from("server/setup/server-lib/mirth-crypto.jar")
-            into("command/lib")
+            from(File(projectDir, "server/setup/server-lib/mirth-crypto.jar"))
+            into(File(projectDir, "command/lib"))
         }
     }
     
@@ -355,29 +358,29 @@ tasks.register("build-cli") {
     doLast {
         // Copy CLI JARs to server setup
         copy {
-            from("command/build/libs/mirth-cli.jar")
-            into("server/setup/cli-lib")
+            from(File(projectDir, "command/build/libs/mirth-cli.jar"))
+            into(File(projectDir, "server/setup/cli-lib"))
         }
         copy {
-            from("command/build/libs/mirth-cli-launcher.jar")
-            into("server/setup")
+            from(File(projectDir, "command/build/libs/mirth-cli-launcher.jar"))
+            into(File(projectDir, "server/setup"))
         }
         
         // Copy CLI lib dependencies (excluding mirth-client.jar)
         copy {
-            from("command/lib") {
+            from(File(projectDir, "command/lib")) {
                 exclude("mirth-client.jar")
             }
-            into("server/setup/cli-lib")
+            into(File(projectDir, "server/setup/cli-lib"))
         }
         
         // Copy CLI configuration files
         copy {
-            from("command/conf") {
+            from(File(projectDir, "command/conf")) {
                 include("mirth-cli-config.properties")
                 include("log4j2-cli.properties")
             }
-            into("server/setup/conf")
+            into(File(projectDir, "server/setup/conf"))
         }
         
         println("CLI build completed and artifacts copied to server setup")
@@ -392,14 +395,14 @@ tasks.register("orchestratorBuild") {
     doLast {
         // Copy extensions to server build
         copy {
-            from("server/setup/extensions")
-            into("server/build/extensions")
+            from(File(projectDir, "server/setup/extensions"))
+            into(File(projectDir, "server/build/extensions"))
         }
         
         // Copy client-lib to server build
         copy {
-            from("server/setup/client-lib")
-            into("server/build/client-lib")
+            from(File(projectDir, "server/setup/client-lib"))
+            into(File(projectDir, "server/build/client-lib"))
         }
         
         println("Main build completed successfully")
