@@ -52,7 +52,7 @@ dependencies {
 
 // Ensure client and server JARs are built before webadmin compilation
 tasks.compileJava {
-    dependsOn(":client:jar", ":server:jar")
+    dependsOn(":client:jar", ":server:jar", ":donkey:copyToServer", ":server:copyEdiXmlFiles")
 }
 
 sourceSets {

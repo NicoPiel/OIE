@@ -87,6 +87,8 @@ val createVersionProperties by tasks.registering {
 // Compile task depends on version properties
 tasks.compileJava {
     dependsOn(createVersionProperties)
+    // Add explicit dependency on donkey copyToServer task
+    dependsOn(":donkey:copyToServer")
 }
 
 // Copy version.properties and other resources to classes
@@ -151,6 +153,8 @@ val createClientCoreJar by tasks.registering(Jar::class) {
 // Server JAR task
 val createServerJar by tasks.registering(Jar::class) {
     dependsOn(tasks.classes, createClientCoreJar)
+    // Add explicit dependency on copyEdiXmlFiles task when it exists
+    dependsOn(tasks.named("copyEdiXmlFiles"))
     archiveFileName.set("mirth-server.jar")
     destinationDirectory.set(file("setup/server-lib"))
     from(sourceSets.main.get().output)
@@ -410,6 +414,10 @@ val datatypeTasks = mutableListOf<TaskProvider<out Task>>()
 datatypeNames.forEach { datatypeName ->
     val createDatatypeSharedJar = tasks.register<Jar>("createDatatype${datatypeName.capitalize()}SharedJar") {
             dependsOn(tasks.compileJava)
+            // Add dependency on copyEdiXmlFiles for EDI datatype
+            if (datatypeName == "edi") {
+                dependsOn("copyEdiXmlFiles")
+            }
             archiveFileName.set("datatype-${datatypeName}-shared.jar")
             destinationDirectory.set(file("build/extensions/datatype-${datatypeName}"))
             from(sourceSets.main.get().output)
@@ -452,6 +460,10 @@ datatypeNames.forEach { datatypeName ->
     
     val createDatatypeServerJar = tasks.register<Jar>("createDatatype${datatypeName.capitalize()}ServerJar") {
             dependsOn(tasks.compileJava)
+            // Add dependency on copyEdiXmlFiles for EDI datatype
+            if (datatypeName == "edi") {
+                dependsOn("copyEdiXmlFiles")
+            }
             archiveFileName.set("datatype-${datatypeName}-server.jar")
             destinationDirectory.set(file("build/extensions/datatype-${datatypeName}"))
             from(sourceSets.main.get().output)
@@ -694,7 +706,7 @@ val createHttpauthUserutilSources = tasks.register<Jar>("createHttpauthUserutilS
 
 // Copy setup files task
 val copySetupFiles by tasks.registering(Copy::class) {
-    dependsOn(createSetupDirs)
+    dependsOn(createSetupDirs, ":donkey:copyToServer")
     duplicatesStrategy = DuplicatesStrategy.WARN
     
     // Copy lib files
@@ -800,6 +812,8 @@ tasks.test {
 
 // Configure default JAR task to handle duplicates
 tasks.jar {
+    // Add explicit dependency on copyEdiXmlFiles task
+    dependsOn("copyEdiXmlFiles")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 

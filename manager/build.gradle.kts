@@ -54,6 +54,8 @@ sourceSets {
 }
 
 tasks.jar {
+    // Add explicit dependency on donkey copyToServer task
+    dependsOn(":donkey:copyToServer")
     archiveFileName.set("mirth-manager-launcher.jar")
     
     manifest {
@@ -67,6 +69,7 @@ tasks.jar {
 }
 
 tasks.register("copyDependencies", Copy::class) {
+    dependsOn(":donkey:copyToServer")
     from(configurations.runtimeClasspath)
     into("${buildDir}/libs/manager-lib")
     include("*.jar")
@@ -86,6 +89,25 @@ tasks.register("dist") {
 
 tasks.named("build") {
     dependsOn("dist")
+}
+
+// Add explicit dependencies for compilation tasks
+tasks.compileJava {
+    dependsOn(":donkey:copyToServer")
+    dependsOn(":server:copyEdiXmlFiles")
+}
+
+// Add explicit dependencies for distribution tasks
+tasks.withType<CreateStartScripts> {
+    dependsOn(":donkey:copyToServer")
+}
+
+tasks.withType<Tar> {
+    dependsOn(":donkey:copyToServer")
+}
+
+tasks.withType<Zip> {
+    dependsOn(":donkey:copyToServer")
 }
 
 // Copy log4j2.properties and images to classes

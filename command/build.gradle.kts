@@ -48,6 +48,24 @@ dependencies {
     testImplementation(fileTree(mapOf("dir" to "testlib", "include" to listOf("*.jar"))))
 }
 
+// Ensure donkey JARs are built and copied before command compilation
+tasks.compileJava {
+    dependsOn(":donkey:copyToServer", ":server:copyEdiXmlFiles")
+}
+
+// Fix task dependencies for distribution tasks
+tasks.named("startScripts") {
+    dependsOn(":donkey:copyToServer")
+}
+
+tasks.named("distTar") {
+    dependsOn(":donkey:copyToServer")
+}
+
+tasks.named("distZip") {
+    dependsOn(":donkey:copyToServer")
+}
+
 sourceSets {
     main {
         java {
@@ -98,6 +116,7 @@ tasks.register("copyCliLibs", Copy::class) {
 
 // Copy project dependencies to cli-lib
 tasks.register("copyDependencies", Copy::class) {
+    dependsOn(":donkey:copyToServer")
     from(configurations.runtimeClasspath)
     into("${buildDir}/libs/cli-lib")
     include("*.jar")
