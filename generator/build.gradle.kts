@@ -19,8 +19,12 @@ application {
 }
 
 dependencies {
-    // Local lib dependencies
-    implementation(fileTree(mapOf("dir" to "lib", "include" to listOf("*.jar"))))
+    // Local lib dependencies - exclude problematic SLF4J jar
+    implementation(fileTree(mapOf("dir" to "lib", "include" to listOf("*.jar"), "exclude" to listOf("slf4j-log4j12-*.jar"))))
+    
+    // Use only one SLF4J binding - prefer the one from root project
+    implementation("org.slf4j:slf4j-api:1.7.30")
+    implementation("org.slf4j:slf4j-log4j12:1.7.30")
 }
 
 sourceSets {
