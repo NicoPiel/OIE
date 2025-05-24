@@ -729,6 +729,21 @@ val copySetupFiles by tasks.registering(Copy::class) {
     into("setup")
 }
 
+// Copy client JARs from client build
+val copyClientJars by tasks.registering(Copy::class) {
+    dependsOn(":client:buildClient")
+    from("../client/dist") {
+        include("mirth-client.jar")
+    }
+    into("setup/client-lib")
+    
+    // Also copy client extension JARs
+    from("../client/dist/extensions") {
+        include("**/*-client.jar")
+    }
+    into("setup/client-lib")
+}
+
 // Copy extensions to setup
 val copyExtensionsToSetup by tasks.registering(Copy::class) {
     dependsOn(connectorTasks + datatypeTasks + pluginTasks + createHttpauthUserutilSources)
@@ -761,13 +776,14 @@ val createSetup by tasks.registering {
     dependsOn(
         createSetupDirs,
         createCryptoJar,
-        createClientCoreJar, 
+        createClientCoreJar,
         createServerJar,
         createVocabJar,
         createDbconfJar,
         createLauncherJar,
         createUserutilSourcesJar,
         copySetupFiles,
+        copyClientJars,
         copyExtensionsToSetup,
         replaceVersionTokens
     )
