@@ -75,11 +75,15 @@ sourceSets {
 
 // Custom task to create version.properties
 val createVersionProperties by tasks.registering {
+    // Capture project version during configuration time
+    val projectVersion = version.toString()
+    val buildDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d, yyyy"))
+    
     doLast {
-        val versionFile = file("version.properties")
+        val versionFile = File(projectDir, "version.properties")
         versionFile.writeText("""
-            mirth.version=${project.version}
-            mirth.date=${LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d, yyyy"))}
+            mirth.version=${projectVersion}
+            mirth.date=${buildDate}
         """.trimIndent())
     }
 }
@@ -104,7 +108,7 @@ val createSetupDirs by tasks.registering {
         listOf(
             "setup",
             "setup/conf",
-            "setup/extensions", 
+            "setup/extensions",
             "setup/public_html",
             "setup/public_api_html",
             "setup/server-lib",
@@ -117,7 +121,7 @@ val createSetupDirs by tasks.registering {
             "setup/webapps",
             "build/extensions"
         ).forEach { dir ->
-            file(dir).mkdirs()
+            File(projectDir, dir).mkdirs()
         }
     }
 }
@@ -126,7 +130,7 @@ val createSetupDirs by tasks.registering {
 val createCryptoJar by tasks.registering(Jar::class) {
     dependsOn(tasks.classes)
     archiveFileName.set("mirth-crypto.jar")
-    destinationDirectory.set(file("setup/server-lib"))
+    destinationDirectory.set(File(projectDir, "setup/server-lib"))
     from(sourceSets.main.get().output)
     include("com/mirth/commons/encryption/**")
 }
@@ -135,7 +139,7 @@ val createCryptoJar by tasks.registering(Jar::class) {
 val createClientCoreJar by tasks.registering(Jar::class) {
     dependsOn(tasks.classes, createCryptoJar)
     archiveFileName.set("mirth-client-core.jar")
-    destinationDirectory.set(file("setup/server-lib"))
+    destinationDirectory.set(File(projectDir, "setup/server-lib"))
     from(sourceSets.main.get().output)
     include("com/mirth/connect/client/core/**")
     include("com/mirth/connect/model/**")
@@ -156,7 +160,7 @@ val createServerJar by tasks.registering(Jar::class) {
     // Add explicit dependency on copyEdiXmlFiles task when it exists
     dependsOn(tasks.named("copyEdiXmlFiles"))
     archiveFileName.set("mirth-server.jar")
-    destinationDirectory.set(file("setup/server-lib"))
+    destinationDirectory.set(File(projectDir, "setup/server-lib"))
     from(sourceSets.main.get().output)
     include("com/mirth/connect/server/**")
     include("com/mirth/connect/model/**")
@@ -172,22 +176,22 @@ val createServerJar by tasks.registering(Jar::class) {
 
 // Vocab JAR task (if mirth-vocab.jar exists in lib)
 val createVocabJar by tasks.registering(Copy::class) {
-    from("lib/mirth-vocab.jar")
-    into("setup/server-lib")
+    from(File(projectDir, "lib/mirth-vocab.jar"))
+    into(File(projectDir, "setup/server-lib"))
 }
 
 // DBConf JAR task
 val createDbconfJar by tasks.registering(Jar::class) {
     archiveFileName.set("mirth-dbconf.jar")
-    destinationDirectory.set(file("setup/server-lib"))
-    from("dbconf")
+    destinationDirectory.set(File(projectDir, "setup/server-lib"))
+    from(File(projectDir, "dbconf"))
 }
 
 // Launcher JAR task
 val createLauncherJar by tasks.registering(Jar::class) {
     dependsOn(tasks.classes)
     archiveFileName.set("mirth-server-launcher.jar")
-    destinationDirectory.set(file("setup"))
+    destinationDirectory.set(File(projectDir, "setup"))
     from(sourceSets.main.get().output)
     include("com/mirth/connect/server/launcher/**")
     include("com/mirth/connect/server/extprops/**")
@@ -202,8 +206,8 @@ val createLauncherJar by tasks.registering(Jar::class) {
 // UserUtil Sources JAR task
 val createUserutilSourcesJar by tasks.registering(Jar::class) {
     archiveFileName.set("userutil-sources.jar")
-    destinationDirectory.set(file("setup/client-lib"))
-    from("src")
+    destinationDirectory.set(File(projectDir, "setup/client-lib"))
+    from(File(projectDir, "src"))
     include("com/mirth/connect/userutil/**/*.java")
     include("com/mirth/connect/server/userutil/**/*.java")
     exclude("**/package-info.java")
@@ -219,7 +223,7 @@ connectorNames.forEach { connectorName ->
     val createConnectorSharedJar = tasks.register<Jar>("create${connectorName.capitalize()}SharedJar") {
         dependsOn(tasks.compileJava)
         archiveFileName.set("${connectorName}-shared.jar")
-        destinationDirectory.set(file("build/extensions/${connectorName}"))
+        destinationDirectory.set(File(projectDir, "build/extensions/${connectorName}"))
         from(sourceSets.main.get().output)
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         
@@ -301,7 +305,7 @@ connectorNames.forEach { connectorName ->
     val createConnectorServerJar = tasks.register<Jar>("create${connectorName.capitalize()}ServerJar") {
         dependsOn(tasks.compileJava)
         archiveFileName.set("${connectorName}-server.jar")
-        destinationDirectory.set(file("build/extensions/${connectorName}"))
+        destinationDirectory.set(File(projectDir, "build/extensions/${connectorName}"))
         from(sourceSets.main.get().output)
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         
@@ -391,14 +395,14 @@ connectorNames.forEach { connectorName ->
     }
     
     val copyConnectorXml = tasks.register<Copy>("copy${connectorName.capitalize()}Xml") {
-        from("src/com/mirth/connect/connectors/${if (connectorName == "dicom") "dimse" else connectorName}")
-        into("build/extensions/${connectorName}")
+        from(File(projectDir, "src/com/mirth/connect/connectors/${if (connectorName == "dicom") "dimse" else connectorName}"))
+        into(File(projectDir, "build/extensions/${connectorName}"))
         include("*.xml")
     }
     
     val copyConnectorLib = tasks.register<Copy>("copy${connectorName.capitalize()}Lib") {
-        from("lib/extensions/${if (connectorName == "dicom") "dimse" else connectorName}")
-        into("build/extensions/${connectorName}/lib")
+        from(File(projectDir, "lib/extensions/${if (connectorName == "dicom") "dimse" else connectorName}"))
+        into(File(projectDir, "build/extensions/${connectorName}/lib"))
         include("*.jar")
     }
     
@@ -419,7 +423,7 @@ datatypeNames.forEach { datatypeName ->
                 dependsOn("copyEdiXmlFiles")
             }
             archiveFileName.set("datatype-${datatypeName}-shared.jar")
-            destinationDirectory.set(file("build/extensions/datatype-${datatypeName}"))
+            destinationDirectory.set(File(projectDir, "build/extensions/datatype-${datatypeName}"))
             from(sourceSets.main.get().output)
             include("com/mirth/connect/plugins/datatypes/${datatypeName}/**")
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -465,7 +469,7 @@ datatypeNames.forEach { datatypeName ->
                 dependsOn("copyEdiXmlFiles")
             }
             archiveFileName.set("datatype-${datatypeName}-server.jar")
-            destinationDirectory.set(file("build/extensions/datatype-${datatypeName}"))
+            destinationDirectory.set(File(projectDir, "build/extensions/datatype-${datatypeName}"))
             from(sourceSets.main.get().output)
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         
@@ -504,14 +508,14 @@ datatypeNames.forEach { datatypeName ->
     }
     
     val copyDatatypeXml = tasks.register<Copy>("copyDatatype${datatypeName.capitalize()}Xml") {
-        from("src/com/mirth/connect/plugins/datatypes/${datatypeName}")
-        into("build/extensions/datatype-${datatypeName}")
+        from(File(projectDir, "src/com/mirth/connect/plugins/datatypes/${datatypeName}"))
+        into(File(projectDir, "build/extensions/datatype-${datatypeName}"))
         include("*.xml")
     }
     
     val copyDatatypeLib = tasks.register<Copy>("copyDatatype${datatypeName.capitalize()}Lib") {
-        from("lib/extensions/datatypes/${datatypeName}")
-        into("build/extensions/datatype-${datatypeName}/lib")
+        from(File(projectDir, "lib/extensions/datatypes/${datatypeName}"))
+        into(File(projectDir, "build/extensions/datatype-${datatypeName}/lib"))
         include("*.jar")
     }
     
@@ -520,8 +524,8 @@ datatypeNames.forEach { datatypeName ->
     // Special handling for EDI datatype XML files
     if (datatypeName == "edi") {
         val copyEdiXmlFiles = tasks.register<Copy>("copyEdiXmlFiles") {
-            from("src/com/mirth/connect/plugins/datatypes/edi/xml")
-            into("build/classes/java/main/com/mirth/connect/plugins/datatypes/edi/xml")
+            from(File(projectDir, "src/com/mirth/connect/plugins/datatypes/edi/xml"))
+            into(File(projectDir, "build/classes/java/main/com/mirth/connect/plugins/datatypes/edi/xml"))
         }
         datatypeTasks.add(copyEdiXmlFiles)
     }
@@ -551,7 +555,7 @@ pluginNames.forEach { pluginName ->
         val createPluginSharedJar = tasks.register<Jar>("create${pluginName.capitalize()}SharedJar") {
             dependsOn(tasks.compileJava)
             archiveFileName.set("${pluginName}-shared.jar")
-            destinationDirectory.set(file("build/extensions/${pluginName}"))
+            destinationDirectory.set(File(projectDir, "build/extensions/${pluginName}"))
             from(sourceSets.main.get().output)
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
             
@@ -630,7 +634,7 @@ pluginNames.forEach { pluginName ->
         val createPluginServerJar = tasks.register<Jar>("create${pluginName.capitalize()}ServerJar") {
             dependsOn(tasks.compileJava)
             archiveFileName.set("${pluginName}-server.jar")
-            destinationDirectory.set(file("build/extensions/${pluginName}"))
+            destinationDirectory.set(File(projectDir, "build/extensions/${pluginName}"))
             from(sourceSets.main.get().output)
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
             
@@ -682,15 +686,15 @@ pluginNames.forEach { pluginName ->
     }
     
     val copyPluginXml = tasks.register<Copy>("copy${pluginName.capitalize()}Xml") {
-        from("src/com/mirth/connect/plugins/${pluginName}")
-        into("build/extensions/${pluginName}")
+        from(File(projectDir, "src/com/mirth/connect/plugins/${pluginName}"))
+        into(File(projectDir, "build/extensions/${pluginName}"))
         include("*.xml")
     }
     pluginTasks.add(copyPluginXml)
     
     val copyPluginLib = tasks.register<Copy>("copy${pluginName.capitalize()}Lib") {
-        from("lib/extensions/${pluginName}")
-        into("build/extensions/${pluginName}/lib")
+        from(File(projectDir, "lib/extensions/${pluginName}"))
+        into(File(projectDir, "build/extensions/${pluginName}/lib"))
         include("*.jar")
     }
     pluginTasks.add(copyPluginLib)
@@ -699,8 +703,8 @@ pluginNames.forEach { pluginName ->
 // Special task for httpauth userutil sources
 val createHttpauthUserutilSources = tasks.register<Jar>("createHttpauthUserutilSources") {
     archiveFileName.set("httpauth-userutil-sources.jar")
-    destinationDirectory.set(file("build/extensions/httpauth/src"))
-    from("src")
+    destinationDirectory.set(File(projectDir, "build/extensions/httpauth/src"))
+    from(File(projectDir, "src"))
     include("com/mirth/connect/plugins/httpauth/userutil/**")
 }
 
@@ -710,75 +714,78 @@ val copySetupFiles by tasks.registering(Copy::class) {
     duplicatesStrategy = DuplicatesStrategy.WARN
     
     // Copy lib files
-    from("lib") {
+    from(File(projectDir, "lib")) {
         exclude("ant/**")
         exclude("extensions/**")
         into("server-lib")
     }
     
     // Copy conf files
-    from("conf") {
+    from(File(projectDir, "conf")) {
         into("conf")
     }
     
     // Copy public html files
-    from("public_html") {
+    from(File(projectDir, "public_html")) {
         exclude("Thumbs.db")
         into("public_html")
     }
     
     // Copy public API html files
-    from("public_api_html") {
+    from(File(projectDir, "public_api_html")) {
         exclude("Thumbs.db")
         into("public_api_html")
     }
     
     // Copy docs files
-    from("docs") {
+    from(File(projectDir, "docs")) {
         into("docs")
     }
     
-    into("setup")
+    into(File(projectDir, "setup"))
 }
 
 // Copy client JARs from client build
 val copyClientJars by tasks.registering(Copy::class) {
     dependsOn(":client:buildClient")
-    from("../client/dist") {
+    from(File(projectDir, "../client/dist")) {
         include("mirth-client.jar")
     }
-    into("setup/client-lib")
+    into(File(projectDir, "setup/client-lib"))
     
     // Also copy client extension JARs
-    from("../client/dist/extensions") {
+    from(File(projectDir, "../client/dist/extensions")) {
         include("**/*-client.jar")
     }
-    into("setup/client-lib")
+    into(File(projectDir, "setup/client-lib"))
 }
 
 // Copy extensions to setup
 val copyExtensionsToSetup by tasks.registering(Copy::class) {
     dependsOn(connectorTasks + datatypeTasks + pluginTasks + createHttpauthUserutilSources)
-    from("build/extensions")
-    into("setup/extensions")
+    from(File(projectDir, "build/extensions"))
+    into(File(projectDir, "setup/extensions"))
 }
 
 // Replace version tokens in extensions
 val replaceVersionTokens by tasks.registering {
     dependsOn(copyExtensionsToSetup)
+    // Capture project version during configuration time
+    val projectVersion = version.toString()
+    
     doLast {
-        fileTree("setup/extensions").matching {
+        fileTree(File(projectDir, "setup/extensions")).matching {
             include("**/*.xml")
         }.forEach { file ->
             val content = file.readText()
-            file.writeText(content.replace("@mirthversion", project.version.toString()))
+            file.writeText(content.replace("@mirthversion", projectVersion))
         }
         
-        fileTree("setup/public_html").matching {
+        fileTree(File(projectDir, "setup/public_html")).matching {
             include("*.html")
         }.forEach { file ->
             val content = file.readText()
-            file.writeText(content.replace("@mirthversion", project.version.toString()))
+            file.writeText(content.replace("@mirthversion", projectVersion))
         }
     }
 }
