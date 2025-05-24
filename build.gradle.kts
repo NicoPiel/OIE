@@ -313,7 +313,7 @@ tasks.register("build-manager") {
     doLast {
         // Copy manager launcher JAR to server setup
         copy {
-            from("manager/dist/mirth-manager-launcher.jar")
+            from("manager/build/libs/mirth-manager-launcher.jar")
             into("server/setup")
         }
         
@@ -355,11 +355,11 @@ tasks.register("build-cli") {
     doLast {
         // Copy CLI JARs to server setup
         copy {
-            from("command/build/mirth-cli.jar")
+            from("command/build/libs/mirth-cli.jar")
             into("server/setup/cli-lib")
         }
         copy {
-            from("command/build/mirth-cli-launcher.jar")
+            from("command/build/libs/mirth-cli-launcher.jar")
             into("server/setup")
         }
         
