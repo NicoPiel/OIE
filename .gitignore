@@ -635,3 +635,9 @@ donkey/donkey-test
 
 # /webadmin/src/com/mirth/connect/webadmin/utils/
 
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
