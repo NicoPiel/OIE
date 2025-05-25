@@ -21,21 +21,30 @@ tasks.withType<Zip> {
 // Project dependencies
 dependencies {
     // Donkey dependency - use the JAR output instead of project dependency to avoid transitive deps
-    implementation(files("../donkey/build/libs/donkey-model-${version}.jar"))
+    implementation(files("../donkey/setup/donkey-model.jar"))
+    
+    // Server core dependencies - needed for client compilation
+    implementation(files("../server/setup/server-lib/mirth-client-core.jar"))
+    implementation(files("../server/setup/server-lib/mirth-crypto.jar"))
     
     // Flat directory repository for client/lib dependencies
     implementation(fileTree("lib") { include("*.jar") })
     
     // Dependencies from server extensions (needed for client compilation)
-    implementation(fileTree("../server/lib/extensions") { include("**/*.jar") })
+    implementation(fileTree("../server/build/extensions") { include("**/*.jar") })
     
     // Test dependencies
     testImplementation(fileTree("../server/testlib") { include("*.jar") })
 }
 
-// Make sure donkey JAR is built before client compilation
+// Make sure donkey JAR and server core JARs are built before client compilation
 tasks.compileJava {
-    dependsOn(":donkey:jar")
+    dependsOn(":donkey:donkeyModelJar")
+    dependsOn(":server:createClientCoreJar")
+    dependsOn(":server:createCryptoJar")
+    dependsOn(":server:copySetupFiles")
+    dependsOn(":server:copyExtensionsToSetup")
+    dependsOn(":server:createVocabJar")
 }
 
 java {

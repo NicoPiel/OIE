@@ -1,28 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="lib/velocity-engine-core-2.3.jar"/>
-	<classpathentry kind="lib" path="lib/commons-collections4-4.4.jar"/>
-	<classpathentry kind="lib" path="lib/slf4j-api-1.7.30.jar"/>
-	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.30.jar"/>
-	<classpathentry kind="lib" path="lib/log4j-1.2-api-2.17.2.jar">
+	<classpathentry kind="src" output="build/resources/test" path="src/test/resources">
 		<attributes>
-			<attribute name="javadoc_location" value="https://logging.apache.org/log4j/2.x/log4j-1.2-api/apidocs/"/>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="resource" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/log4j-api-2.17.2.jar">
+	<classpathentry kind="src" output="build/classes/java/test" path="src/test/java">
 		<attributes>
-			<attribute name="javadoc_location" value="https://logging.apache.org/log4j/2.x/log4j-api/apidocs/"/>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/log4j-core-2.17.2.jar">
+	<classpathentry kind="src" output="build/resources/main" path="src/main/resources">
 		<attributes>
-			<attribute name="javadoc_location" value="https://logging.apache.org/log4j/2.x/log4j-core/apidocs/"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="resource" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/commons-lang3-3.13.0.jar"/>
-	<classpathentry kind="lib" path="lib/commons-io-2.13.0.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" output="build/classes/java/main" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="test/resources/|test/java/|main/resources/|main/java/" kind="src" output="build/classes/java/main" path="src">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/classes/java/test" path="build/generated/sources/annotationProcessor/java/test">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/classes/java/main" path="build/generated/sources/annotationProcessor/java/main">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.17.2/fa43ba4467f5300b16d1e0742934149bfc5ac564/log4j-core-2.17.2.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.17.2/88b2d34add2e0370c6a6d03ac7b3609b143e46bd/log4j-core-2.17.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.30/b5a4b6d16ab13e34a88fae84c35cd5d68cac922c/slf4j-api-1.7.30.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.30/71a1fdefa224da50f1db6306ce609981e20186c9/slf4j-api-1.7.30-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/generator/lib/slf4j-api-1.7.30.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/generator/lib/log4j-core-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/generator/lib/log4j-1.2-api-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/677abe279b68c5e7490d6d50c6951376238d7d3e/log4j-1.2.17-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/generator/lib/commons-io-2.13.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/generator/lib/commons-collections4-4.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-1.2-api/2.17.2/8101f657252de8b2b8fb88e2b7cc8854924bf978/log4j-1.2-api-2.17.2.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-1.2-api/2.17.2/956ea95a8ee8050aa30f915ddb9abfff69ef239c/log4j-1.2-api-2.17.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-log4j12/1.7.30/c21f55139d8141d2231214fb1feaf50a1edca95e/slf4j-log4j12-1.7.30.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-log4j12/1.7.30/84a0912c7fa57ec9ba8e3efaba9d5f44dd9c3699/slf4j-log4j12-1.7.30-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/generator/lib/log4j-api-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/generator/lib/commons-lang3-3.13.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/generator/lib/velocity-engine-core-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.17.2/f42d6afa111b4dec5d2aea0fe2197240749a4ea6/log4j-api-2.17.2.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.17.2/91a89f75de4f567c38dc7ec9f83f2a1afd2c2915/log4j-api-2.17.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.1/f2975548f836416306ef1dee748d956f04733915/junit-4.8.1.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.1/2a699fa5026aef66411ed1f57be2af0b541f8990/junit-4.8.1-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

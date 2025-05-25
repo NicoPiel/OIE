@@ -100,6 +100,7 @@ tasks.compileJava {
 // Add explicit dependencies for distribution tasks
 tasks.withType<CreateStartScripts> {
     dependsOn(":donkey:copyToServer")
+    dependsOn(":server:createVocabJar")
 }
 
 tasks.withType<Tar> {
