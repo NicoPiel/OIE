@@ -135,11 +135,12 @@ val createCryptoJar by tasks.registering(Jar::class) {
     include("com/mirth/commons/encryption/**")
 }
 
-// Client Core JAR task  
+// Client Core JAR task
 val createClientCoreJar by tasks.registering(Jar::class) {
     dependsOn(tasks.classes, createCryptoJar)
     archiveFileName.set("mirth-client-core.jar")
     destinationDirectory.set(File(projectDir, "setup/server-lib"))
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from(sourceSets.main.get().output)
     include("com/mirth/connect/client/core/**")
     include("com/mirth/connect/model/**")
@@ -161,6 +162,7 @@ val createServerJar by tasks.registering(Jar::class) {
     dependsOn(tasks.named("copyEdiXmlFiles"))
     archiveFileName.set("mirth-server.jar")
     destinationDirectory.set(File(projectDir, "setup/server-lib"))
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from(sourceSets.main.get().output)
     include("com/mirth/connect/server/**")
     include("com/mirth/connect/model/**")

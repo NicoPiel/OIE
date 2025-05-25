@@ -1,94 +1,2059 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="conf"/>
-	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Server">
-		<accessrules>
-			<accessrule kind="accessible" pattern="com/mirth/connect/client/core/**"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/model/**"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/util/**"/>
-			<accessrule kind="accessible" pattern="org/mozilla/**"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/dimse/DICOMDispatcherProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/dimse/DICOMReceiverProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/doc/DocumentDispatcherProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/file/FileReceiverProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/file/FileDispatcherProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/file/FileScheme"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/http/HttpReceiverProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/http/HttpDispatcherProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/jdbc/DatabaseReceiverProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/jdbc/DatabaseDispatcherProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/jdbc/DatabaseConnectionInfo"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/jdbc/Table"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/jdbc/Column"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/js/JavaScriptReceiverProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/js/JavaScriptDispatcherProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/smtp/SmtpDispatcherProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/smtp/Attachment"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/tcp/TcpReceiverProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/tcp/TcpDispatcherProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/vm/VmReceiverProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/vm/VmDispatcherProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/ws/WebServiceReceiverProperties"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/connectors/ws/WebServiceDispatcherProperties"/>
-			<accessrule kind="nonaccessible" pattern="*/**"/>
-		</accessrules>
-	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/Donkey">
-		<accessrules>
-			<accessrule kind="accessible" pattern="com/mirth/connect/donkey/model/**"/>
-			<accessrule kind="accessible" pattern="com/mirth/connect/donkey/util/**"/>
-			<accessrule kind="nonaccessible" pattern="*/**"/>
-		</accessrules>
-	</classpathentry>
-	<classpathentry kind="lib" path="lib/commons-cli-1.2.jar">
+	<classpathentry kind="src" output="build/classes/java/test" path="test">
 		<attributes>
-			<attribute name="javadoc_location" value="http://commons.apache.org/cli/api-release/"/>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/commons-lang3-3.13.0.jar"/>
-	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar">
+	<classpathentry kind="src" output="build/resources/test" path="src/test/resources">
 		<attributes>
-			<attribute name="javadoc_location" value="http://commons.apache.org/logging/apidocs/"/>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="resource" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/log4j-1.2-api-2.17.2.jar">
+	<classpathentry kind="src" output="build/classes/java/test" path="src/test/java">
 		<attributes>
-			<attribute name="javadoc_location" value="https://logging.apache.org/log4j/2.x/log4j-1.2-api/apidocs/"/>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/log4j-api-2.17.2.jar">
+	<classpathentry kind="src" output="build/resources/main" path="src/main/resources">
 		<attributes>
-			<attribute name="javadoc_location" value="https://logging.apache.org/log4j/2.x/log4j-api/apidocs/"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="resource" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/log4j-core-2.17.2.jar">
+	<classpathentry kind="src" output="build/classes/java/main" path="src/main/java">
 		<attributes>
-			<attribute name="javadoc_location" value="https://logging.apache.org/log4j/2.x/log4j-core/apidocs/"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/xpp3-1.1.4c.jar"/>
-	<classpathentry kind="lib" path="lib/commons-io-2.13.0.jar"/>
-	<classpathentry kind="lib" path="lib/commons-collections4-4.4.jar"/>
-	<classpathentry kind="lib" path="lib/velocity-engine-core-2.3.jar"/>
-	<classpathentry kind="lib" path="lib/velocity-tools-generic-3.1.jar"/>
-	<classpathentry kind="lib" path="lib/commons-configuration2-2.8.0.jar"/>
-	<classpathentry kind="lib" path="lib/bcpkix-jdk18on-1.78.1.jar"/>
-	<classpathentry kind="lib" path="lib/bcprov-jdk18on-1.78.1.jar"/>
-	<classpathentry kind="lib" path="lib/bcutil-jdk18on-1.78.1.jar"/>
-	<classpathentry kind="lib" path="lib/commons-vfs2-2.9.0.jar"/>
-	<classpathentry kind="lib" path="lib/jetty-util-9.4.53.v20231009.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="lib/commons-codec-1.16.0.jar"/>
-	<classpathentry kind="lib" path="lib/httpcore-4.4.13.jar"/>
-	<classpathentry kind="lib" path="lib/httpclient-4.5.13.jar"/>
-	<classpathentry kind="lib" path="lib/httpmime-4.5.13.jar"/>
-	<classpathentry kind="lib" path="lib/rhino-1.7.13.jar"/>
-	<classpathentry kind="lib" path="lib/xstream-1.4.20.jar"/>
-	<classpathentry kind="lib" path="lib/commons-pool2-2.3.jar"/>
-	<classpathentry kind="lib" path="lib/slf4j-api-1.7.30.jar"/>
-	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.30.jar"/>
+	<classpathentry excluding="test/resources/|test/java/|main/resources/|main/java/" kind="src" output="build/classes/java/main" path="src">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/classes/java/test" path="build/generated/sources/annotationProcessor/java/test">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/classes/java/main" path="build/generated/sources/annotationProcessor/java/main">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-resolver-4.1.97.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.inject-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/hk2-locator-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/javax.ws.rs-api-2.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v24-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jsp/org.eclipse.jdt.ecj-3.19.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/profiles-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/httpcore-4.4.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/javassist-3.26.0-GA.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-base-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/ha-api-3.1.9.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/swagger/swagger-annotations-2.0.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v27-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/log4j-core-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/jackson-core-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/database/postgresql-42.6.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/looks-2.3.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/staxon-1.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/kms-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/regions-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-email-1.3.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/HikariCP-2.5.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-servlet-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.mail-1.5.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/metrics-spi-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javassist-3.26.0-GA.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-configuration2-2.8.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javax.annotation-api-1.3.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/miglayout-core-4.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxb/ext/istack-commons-runtime-3.0.6.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/regions-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/slf4j-log4j12-1.7.30.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/staxon-1.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v281-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/s3-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/file/jcifs-ng-2.1.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/javax.activation-1.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-compress-1.24.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/velocity-engine-core-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/bcpkix-jdk18on-1.78.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-container-jetty-http-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/file/webdavclient4j-core-0.92.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javax.activation-api-1.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/swagger/swagger-jaxrs2-2.0.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/utils-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jaxb-runtime-2.4.0-b180725.0644.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jai_imageio.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-pool2-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jms/geronimo-j2ee-management_1.1_spec-1.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/autocomplete-2.5.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/mimepull-1.9.7.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/hk2-api-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-schemas-3.1.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-codec-http2-4.1.97.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/database/postgresql-42.6.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/aws-core-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/database/mssql-jdbc-8.4.1.jre8.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/log4j-api-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v28-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jna-platform-4.5.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-1.2-api/2.17.2/8101f657252de8b2b8fb88e2b7cc8854924bf978/log4j-1.2-api-2.17.2.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-1.2-api/2.17.2/956ea95a8ee8050aa30f915ddb9abfff69ef239c/log4j-1.2-api-2.17.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/bcutil-jdk18on-1.78.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/reflections-0.9.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/javax.annotation-api-1.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/quartz-2.3.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/auth-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/jaxb-runtime-2.4.0-b180725.0644.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-reactive-streams-http-2.0.8.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/database/ojdbc8-12.2.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/jetty-util-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/HikariCP-2.5.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/swagger/swagger-integration-2.0.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-configuration2-2.8.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-buffer-4.1.97.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jackson/jackson-annotations-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/commons-codec-1.16.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/hk2-utils-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jaxb-api-2.4.0-b180725.0427.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javax.mail-1.5.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/backport-util-concurrent-Java60-3.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxb/jaxb-api-2.4.0-b180725.0427.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-codec-1.16.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/reflections-0.9.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v21-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-codec-1.16.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/commons-logging-1.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jackson-core-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/jsr181-api-1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/dimse/dcm4che-net-2.0.29.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/log4j-1.2-api-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/aws-json-protocol-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/slf4j-api-1.7.30.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/guava/failureaccess-1.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jackson/jackson-core-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/xml-apis-1.4.01.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-collections-3.2.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/swagger-annotations-2.0.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jsp/apache-jsp-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/log4j-core-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-io-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/swagger/swagger-core-2.0.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/guice-4.1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-dbutils-1.7.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/jersey-proxy-client-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/policy-2.7.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/slf4j-log4j12-1.7.30.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/swagger/swagger-jaxrs2-servlet-initializer-2.0.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/management-api-3.2.1.b001.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/bcutil-jdk18on-1.78.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v251-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v21-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/rhino-1.7.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/xpp3-1.1.4c.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/xstream-1.4.20.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/guava/checker-qual-2.10.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-security-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/guava/jsr305-3.0.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/fontbox-2.0.24.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/velocity-engine-core-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-container-servlet-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/database/derby-10.10.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/zip4j_1.3.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-cli-1.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/itext-rtf-2.1.7.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-net-3.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-lang3-3.13.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/aopalliance-repackaged-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxb/ext/txw2-2.4.0-b180725.0644.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/677abe279b68c5e7490d6d50c6951376238d7d3e/log4j-1.2.17-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/commons-pool2-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/bcpkix-jdk18on-1.78.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-jxpath-1.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-jndi-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-continuation-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-reactive-streams-2.0.8.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hk2-utils-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/rhino-1.7.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/commons/commons-math3-3.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javax.ws.rs-api-2.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-digester3-3.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/guava-28.2-jre.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/xstream-1.4.20.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/xmpbox-2.0.24.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/mimepull-1.9.7.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/joda-time-2.9.9.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/httpclient-4.5.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/persistence-api-1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/zip4j_1.3.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/database/sqlite-jdbc-3.43.2.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-compress-1.24.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/bcpkix-jdk18on-1.78.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/commons-beanutils-1.9.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jsp/org.mortbay.jasper.apache-jsp-8.5.70.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v251-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/quartz-2.3.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v28-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/xml-apis-1.4.01.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/jackson-databind-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-logging-1.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/stax-ex-1.8.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javax.inject-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-rewrite-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/osgi-resource-locator-1.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/openhtmltopdf-pdfbox-1.0.9.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v25-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/guava/j2objc-annotations-1.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-media-jaxb-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-server-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/dimse/dcm4che-tool-dcmrcv-2.0.29.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/xpp3-1.1.4c.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/commons/commons-dbutils-1.7.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/aws-query-protocol-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jsch-0.2.18.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/jersey-guava-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxb/jaxb-runtime-2.4.0-b180725.0644.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/javassist-3.26.0-GA.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/guava/jsr305-3.0.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/istack-commons-runtime-3.0.6.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-httpclient-3.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-handler-4.1.97.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.17.2/fa43ba4467f5300b16d1e0742934149bfc5ac564/log4j-core-2.17.2.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.17.2/88b2d34add2e0370c6a6d03ac7b3609b143e46bd/log4j-core-2.17.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-io-2.13.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/eventstream-1.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v22-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/database/mysql-connector-j-8.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/rhino-1.7.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/quartz-2.3.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jcifs-ng-2.1.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-log4j12/1.7.30/c21f55139d8141d2231214fb1feaf50a1edca95e/slf4j-log4j12-1.7.30.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-log4j12/1.7.30/84a0912c7fa57ec9ba8e3efaba9d5f44dd9c3699/slf4j-log4j12-1.7.30-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/database/ojdbc8-12.2.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/commons-configuration2-2.8.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/commons-text-1.10.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-math3-3.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/classgraph-4.8.53.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/guava/error_prone_annotations-2.3.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-http-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/bcprov-jdk18on-1.78.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/org.osgi.core-4.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javassist-3.26.0-GA.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/joda-time-2.9.9.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/miglayout-swing-4.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.json-1.0.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jsp/org.apache.taglibs.taglibs-standard-spec-1.2.5.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-transport-4.1.97.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/donkey-model.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/guava/j2objc-annotations-1.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/javax.inject-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/annotations-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/rsyntaxtextarea-2.5.6.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/hk2-api-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/openhtmltopdf-core-1.0.9.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/HikariCP-2.5.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/xpp3-1.1.4c.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-el-1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-pool2-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/swagger/ext/reflections-0.9.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/httpmime-4.5.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/database/derby-10.10.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/httpcore-4.4.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/commons-lang3-3.13.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/javax.xml.soap-api-1.4.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-collections4-4.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jackson-databind-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-dbcp2-2.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/build/libs/donkey-model-4.5.2.jar">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/httpclient-4.5.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/database/derbytools-10.10.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/database/mssql-jdbc-8.4.1.jre8.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javaparser-1.0.8.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/log4j-core-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hk2-api-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v23-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/staxon-1.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.30/b5a4b6d16ab13e34a88fae84c35cd5d68cac922c/slf4j-api-1.7.30.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.30/71a1fdefa224da50f1db6306ce609981e20186c9/slf4j-api-1.7.30-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/jaxb-api-2.4.0-b180725.0427.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-io-2.13.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v231-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/quartz-2.3.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-vfs2-2.9.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/donkey-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/asm-9.6.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/sdk-core-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/httpclient-4.5.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-beanutils-1.9.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/asm-tree-9.6.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.json-api-1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/mybatis-3.1.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v26-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jms/geronimo-jms_1.1_spec-1.1.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/sts-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/guava/error_prone_annotations-2.3.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/log4j-api-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/log4j-api-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/xstream-1.4.20.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/xercesImpl-2.12.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-fileupload-1.5.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jackson/jackson-dataformat-yaml-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/gmbal-api-only-3.1.0.b001.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/validation-api-1.1.0.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/dimse/jai_imageio.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/bcutil-jdk18on-1.78.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jackson/jackson-dataformat-cbor-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/slf4j-api-1.7.30.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-client-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/jersey-common-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/log4j/log4j-api-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-codec-http-4.1.97.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/xercesImpl-2.12.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/commons-cli-1.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/asm-util-9.6.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/guava-28.2-jre.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/commons-vfs2-2.9.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-text-1.10.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jackson/jackson-databind-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/pdfviewer/PDFRenderer.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/hk2-locator-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/velocity-engine-core-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/commons-io-2.13.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v25-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-proxy-client-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/log4j/log4j-1.2-api-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/dicomviewer/ij.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.activation-api-1.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jersey-common-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-logging-1.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/openjfx.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/language_support.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/commons-collections4-4.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/swingx-core-1.6.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/swagger/swagger-models-2.0.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/utils-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/streambuffer-1.5.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v23-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-codec-4.1.97.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-vfs2-2.9.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/slf4j-api-1.7.30.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-server-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/graphics2d-0.32.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-container-jetty-servlet-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/aws-xml-protocol-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/dimse/dcm4che-core-2.0.29.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/mimepull-1.9.7.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-common-4.1.97.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/protocol-core-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jersey-media-multipart-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/database/jtds-1.3.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/hk2-utils-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/saaj-impl-1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jackson/jackson-datatype-jsr310-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-webapp-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-lang3-3.13.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-common-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v281-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/jaxws-api-2.3.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/jersey-client-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-nio-client-2.20.140.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/flying-saucer-pdf-9.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-transport-native-epoll-4.1.97.Final-linux-x86_64.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/guice-4.1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javax.activation-1.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jsp/org.mortbay.jasper.apache-el-8.5.70.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/mirth-vocab.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/velocity-tools-generic-3.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.servlet-api-3.1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/jaxws-tools-2.3.0.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-container-servlet-core-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/guava/guava-28.2-jre.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-text-1.10.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/httpmime-4.5.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hk2-locator-2.4.0-b31.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-annotations-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-transport-native-unix-common-4.1.97.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jna-4.5.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/libphonenumber-8.12.50.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jersey-client-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v24-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-beanutils-1.9.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jersey-guava-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v27-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-xml-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/slf4j-log4j12-1.7.30.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jetty-util-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/velocity-tools-generic-3.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/not-going-to-be-commons-ssl-0.3.18.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/dimse/dcm4che-filecache-2.0.29.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/guava/checker-qual-2.10.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jackson-annotations-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v231-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jersey-proxy-client-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-util-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-base-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/swagger-annotations-2.0.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jdom2-2.0.6.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/jersey-media-multipart-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/apache-client-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/httpmime-4.5.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/http-client-spi-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/httpcore-4.4.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/database/mysql-connector-j-8.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/database/jtds-1.3.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v26-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/commons/commons-dbcp2-2.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/dimse/dcm4che-tool-dcmsnd-2.0.29.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/itext-2.1.7.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/log4j-1.2-api-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.activation-1.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.17.2/f42d6afa111b4dec5d2aea0fe2197240749a4ea6/log4j-api-2.17.2.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.17.2/91a89f75de4f567c38dc7ec9f83f2a1afd2c2915/log4j-api-2.17.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.ws.rs-api-2.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/log4j/log4j-core-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-guava-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/pdfbox-2.0.24.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/jaxws-rt-2.3.0.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-media-multipart-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/velocity-tools-generic-3.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/ws/wsdl4j-1.6.2-fixed.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/FastInfoset-1.2.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/bcprov-jdk18on-1.78.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/oshi-core-3.9.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-plus-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-util-ajax-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jsp/org.apache.taglibs.taglibs-standard-impl-1.2.5.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/wizard.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/jackson-annotations-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v22-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-collections4-4.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/asm-analysis-9.6.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.annotation-api-1.3.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/asm-commons-9.6.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/log4j-1.2-api-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/lib/javax.activation-api-1.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/guice-4.1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/guava/failureaccess-1.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/reactive-streams-1.0.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/flying-saucer-core-9.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/bcprov-jdk18on-1.78.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.1/f2975548f836416306ef1dee748d956f04733915/junit-4.8.1.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.1/2a699fa5026aef66411ed1f57be2af0b541f8990/junit-4.8.1-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/command/testlib/junit-4.8.1.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

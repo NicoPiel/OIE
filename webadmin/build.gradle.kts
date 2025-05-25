@@ -67,6 +67,7 @@ sourceSets {
 }
 
 tasks.war {
+    dependsOn(":server:createVocabJar")
     archiveFileName.set("webadmin.war")
     from("WebContent")
     

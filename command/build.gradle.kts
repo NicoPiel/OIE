@@ -56,6 +56,7 @@ tasks.compileJava {
 // Fix task dependencies for distribution tasks
 tasks.named("startScripts") {
     dependsOn(":donkey:copyToServer")
+    dependsOn(":server:createVocabJar")
 }
 
 tasks.named("distTar") {
