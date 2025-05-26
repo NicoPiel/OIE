@@ -60,7 +60,7 @@ sourceSets {
         }
         resources {
             srcDirs("src")
-            include("**/*.properties", "**/*.html", "**/*.css", "**/*.js", "**/*.form")
+            include("**/*.properties", "**/*.html", "**/*.css", "**/*.js", "**/*.form", "**/*.png")
         }
     }
     test {
