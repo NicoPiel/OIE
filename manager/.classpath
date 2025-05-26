@@ -71,6 +71,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/mapper-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/profiles-2.15.28.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -101,12 +106,22 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dicom/lib/dcm4che-tool-dcmrcv-2.0.29.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/manager/lib/log4j-core-2.17.2.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/database/postgresql-42.6.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/tcp/tcp-server.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -131,6 +146,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/rulebuilder/rulebuilder-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-email-1.3.1.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -142,6 +162,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-servlet-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-raw/datatype-raw-server.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -191,7 +216,22 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/mllpmode-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v281-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-json/datatype-json-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/js/js-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -206,12 +246,22 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/jms/jms-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-compress-1.24.0.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/manager/lib/commons-text-1.10.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/serverlog-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -236,12 +286,37 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/directoryresource/directoryresource-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/ws/ws-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/swagger/swagger-jaxrs2-2.0.10.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/smtp-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/utils-2.15.28.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/globalmapviewer-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/doc-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -266,6 +341,21 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/dicom-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dashboardstatus/dashboardstatus-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-hl7v3/datatype-hl7v3-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jms/geronimo-j2ee-management_1.1_spec-1.0.1.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -276,7 +366,22 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/jdbc/jdbc-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/mimepull-1.9.7.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/scriptfilestep/scriptfilestep-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/datatype-hl7v3-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -301,12 +406,22 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/file/lib/jcifs-ng-2.1.10.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/aws-core-2.15.28.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/database/mssql-jdbc-8.4.1.jre8.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/setup/donkey-model.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -351,6 +466,21 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/doc-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-hl7v3/datatype-hl7v3-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/mirth-vocab.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-reactive-streams-http-2.0.8.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -386,6 +516,16 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/ws/ws-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/extensionmanager/extensionmanager-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jackson/jackson-annotations-2.14.3.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -406,6 +546,16 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/dashboardstatus-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/jms/jms-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javax.mail-1.5.0.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -421,12 +571,32 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/directoryresource/directoryresource-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-codec-1.16.0.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/ws-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/tcp/tcp-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v21-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dashboardstatus/dashboardstatus-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -441,12 +611,32 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-raw/datatype-raw-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/setup/server-lib/mirth-crypto.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-edi/datatype-edi-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jackson-core-2.14.3.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/jsr181-api-1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/messagebuilder/messagebuilder-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -467,6 +657,21 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/manager/lib/httpcore-4.4.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/lib/pdfbox-2.0.24.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/js/js-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/smtp/smtp-server.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -521,6 +726,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/datatype-ncpdp-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/guice-4.1.0.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -541,7 +751,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/file/file-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/management-api-3.2.1.b001.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/datatype-hl7v2-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -616,7 +836,22 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dashboardstatus/dashboardstatus-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/jms/jms-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/database/derby-10.10.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/datatype-xml-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -637,6 +872,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/itext-rtf-2.1.7.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/mirth-crypto.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -701,6 +941,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/manager/lib/mirth-crypto.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/rhino-1.7.13.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -712,6 +957,21 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javax.ws.rs-api-2.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-json/datatype-json-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jms-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dicom/dicom-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -746,6 +1006,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/file-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/zip4j_1.3.3.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -756,7 +1021,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/setup/server-lib/mirth-client-core.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-compress-1.24.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/pdfviewer/pdfviewer-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -806,7 +1081,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/lib/graphics2d-0.32.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-rewrite-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/vm/vm-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -816,12 +1101,37 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/rulebuilder/rulebuilder-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/doc/openhtmltopdf-pdfbox-1.0.9.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/globalmapviewer/globalmapviewer-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/mirth-client-core.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-ncpdp/datatype-ncpdp-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/manager/lib/commons-io-2.13.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-dicom/datatype-dicom-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -832,6 +1142,21 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/guava/j2objc-annotations-1.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datapruner/datapruner-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/lib/fontbox-2.0.24.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/mllpmode/mllpmode-server.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -847,6 +1172,16 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/dimse/dcm4che-tool-dcmrcv-2.0.29.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/file/file-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/js/js-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -896,7 +1231,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/file/lib/webdavclient4j-core-0.92.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.17.2/fa43ba4467f5300b16d1e0742934149bfc5ac564/log4j-core-2.17.2.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.17.2/88b2d34add2e0370c6a6d03ac7b3609b143e46bd/log4j-core-2.17.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datapruner/datapruner-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -907,6 +1252,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/eventstream-1.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/http/http-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -926,6 +1276,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/manager/lib/mirth-client-core.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jcifs-ng-2.1.10.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -937,6 +1292,16 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-log4j12/1.7.30/c21f55139d8141d2231214fb1feaf50a1edca95e/slf4j-log4j12-1.7.30.jar" sourcepath="/home/nico/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-log4j12/1.7.30/84a0912c7fa57ec9ba8e3efaba9d5f44dd9c3699/slf4j-log4j12-1.7.30-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dicom/lib/dcm4che-net-2.0.29.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-delimited/datatype-delimited-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -961,12 +1326,22 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/smtp/smtp-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/manager/lib/hk2-locator-2.4.0-b31.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/classgraph-4.8.53.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/datatype-raw-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -987,6 +1362,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/org.osgi.core-4.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/lib/itext-2.1.7.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1021,12 +1401,22 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/xsltstep/xsltstep-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-transport-4.1.97.Final.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/donkey-model.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/mapper/mapper-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1046,7 +1436,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/messagebuilder-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/rsyntaxtextarea-2.5.6.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/vm-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1086,7 +1486,27 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/datapruner-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/js-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/database/derby-10.10.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/jdbc/jdbc-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-edi/datatype-edi-server.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1097,6 +1517,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-collections4-4.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dicomviewer/lib/ij.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1121,9 +1546,13 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/build/libs/donkey-model-4.5.2.jar">
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javascriptstep-shared.jar">
 		<attributes>
-			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/imageviewer/imageviewer-client.jar">
+		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
@@ -1138,6 +1567,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/manager/lib/mimepull-1.9.7.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/scriptfilerule-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1177,7 +1611,22 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/scriptfilerule/scriptfilerule-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/commons-io-2.13.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/javascriptrule/javascriptrule-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/xsltstep-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1192,7 +1641,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/vm/vm-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/quartz-2.3.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dicom/dicom-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1202,7 +1661,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-xml/datatype-xml-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/donkey-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/javascriptstep/javascriptstep-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1222,7 +1691,22 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-hl7v2/datatype-hl7v2-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/commons/commons-beanutils-1.9.4.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/serverlog/serverlog-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/httpauth/httpauth-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1233,6 +1717,21 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.json-api-1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/globalmapviewer/globalmapviewer-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-delimited/datatype-delimited-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-dicom/datatype-dicom-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1262,6 +1761,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/destinationsetfilter/destinationsetfilter-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/donkey/lib/guava/error_prone_annotations-2.3.4.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -1282,6 +1786,16 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/http/http-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/textviewer/textviewer-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/xercesImpl-2.12.2.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -1293,6 +1807,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jackson/jackson-dataformat-yaml-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/httpauth/src/httpauth-userutil-sources.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1312,12 +1831,42 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/serverlog/serverlog-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/dimse/jai_imageio.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-edi/datatype-edi-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dicom/lib/jai_imageio.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/vm/vm-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jackson/jackson-dataformat-cbor-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dicom/lib/dcm4che-filecache-2.0.29.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-hl7v2/datatype-hl7v2-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1332,12 +1881,27 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-ncpdp/datatype-ncpdp-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-client-2.22.1.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/httpauth/httpauth-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/log4j/log4j-api-2.17.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/messagebuilder/messagebuilder-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1357,7 +1921,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-dicom/datatype-dicom-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/asm-util-9.6.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/doc-server.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1372,12 +1946,12 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/pdfviewer/PDFRenderer.jar">
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/hk2-locator-2.4.0-b31.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/ext/hk2-locator-2.4.0-b31.jar">
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/lib/flying-saucer-core-9.0.1.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1393,6 +1967,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-proxy-client-2.22.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/globalmapviewer/globalmapviewer-server.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1497,6 +2076,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/lib/xmpbox-2.0.24.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-container-jetty-servlet-2.22.1.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -1512,12 +2096,47 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/destinationsetfilter-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/tcp/tcp-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/mllpmode/mllpmode-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-xml/datatype-xml-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/mimepull-1.9.7.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/lib/flying-saucer-pdf-9.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-common-4.1.97.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-raw/datatype-raw-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dicom/lib/dcm4che-tool-dcmsnd-2.0.29.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1537,7 +2156,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/lib/openhtmltopdf-pdfbox-1.0.9.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/jaxws/ext/saaj-impl-1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-delimited/datatype-delimited-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1547,7 +2176,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/doc-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-webapp-9.4.53.v20231009.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/ws/ws-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1582,6 +2221,16 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/scriptfilestep/scriptfilestep-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/serverlog/serverlog-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-transport-native-epoll-4.1.97.Final-linux-x86_64.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -1598,6 +2247,16 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jsp/org.mortbay.jasper.apache-el-8.5.70.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/datatype-edi-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-hl7v3/datatype-hl7v3-server.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1622,12 +2281,32 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/mllpmode/mllpmode-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jersey/jersey-container-servlet-core-2.22.1.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/file/file-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/jdbc/jdbc-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/donkey/guava/guava-28.2-jre.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/http/http-server.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1647,6 +2326,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/scriptfilestep-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jetty-annotations-9.4.53.v20231009.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -1658,6 +2342,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/aws/ext/netty/netty-transport-native-unix-common-4.1.97.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-xml/datatype-xml-server.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1692,6 +2381,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/manager/lib/donkey-model.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/hapi/hapi-structures-v27-2.3.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -1722,12 +2416,27 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/scriptfilerule/scriptfilerule-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/not-going-to-be-commons-ssl-0.3.18.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/manager/lib/httpmime-4.5.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/lib/openhtmltopdf-core-1.0.9.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/javascriptrule-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1743,6 +2452,26 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jackson-annotations-2.14.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/directoryresource/directoryresource-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/datatype-json-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/directoryresource-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/javascriptstep/javascriptstep-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1772,7 +2501,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/doc/lib/itext-rtf-2.1.7.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jdom2-2.0.6.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/mapper/mapper-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1787,7 +2526,37 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/tcp-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/donkey-model.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/datatype-delimited-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/httpcore-4.4.13.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/xsltstep/xsltstep-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dicomviewer/dicomviewer-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/javascriptrule/javascriptrule-client.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1812,6 +2581,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/ws/lib/wsdl4j-1.6.2-fixed.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/dimse/dcm4che-tool-dcmsnd-2.0.29.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -1827,7 +2601,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/pdfviewer/lib/PDFRenderer.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.activation-1.2.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/destinationsetfilter/destinationsetfilter-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1872,7 +2656,17 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/httpauth/httpauth-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/extensions/ws/wsdl4j-1.6.2-fixed.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-ncpdp/datatype-ncpdp-server.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1897,6 +2691,11 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/jdbc-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/jetty/jsp/org.apache.taglibs.taglibs-standard-impl-1.2.5.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
@@ -1907,7 +2706,22 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dicom/dicom-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-hl7v2/datatype-hl7v2-server.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/hapi-structures-v22-2.3.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/http-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1922,7 +2736,32 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/smtp/smtp-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/javax/javax.annotation-api-1.3.2.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/httpauth-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datatype-json/datatype-json-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/datapruner/datapruner-client.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/build/extensions/dicom/lib/dcm4che-core-2.0.29.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
@@ -1958,6 +2797,16 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/nico/dev/OIE/server/lib/bcprov-jdk18on-1.78.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/datatype-dicom-shared.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/nico/dev/OIE/client/lib/rulebuilder-shared.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>

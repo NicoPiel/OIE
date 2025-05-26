@@ -830,8 +830,3 @@ tasks.jar {
 tasks.build {
     dependsOn(createSetup)
 }
-
-// Clean task
-tasks.clean {
-    delete("setup", "build", "classes", "test_classes", "logs", "version.properties")
-}

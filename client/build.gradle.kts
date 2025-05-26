@@ -98,15 +98,14 @@ val createClientJar by tasks.registering(Jar::class) {
     exclude("com/mirth/connect/connectors/**")
     // Include only the base ConnectorClass
     include("com/mirth/connect/connectors/ConnectorClass.class")
-    
-    // Copy resources
-    from("src") {
-        include("log4j2.properties")
-        include("com/mirth/connect/client/ui/images/**")
-        include("com/mirth/connect/client/ui/components/rsta/*.properties")
-        include("com/mirth/connect/client/ui/components/tag/*.html")
-        include("com/mirth/connect/client/ui/components/tag/*.css")
-        include("com/mirth/connect/client/ui/components/tag/*.js")
+    include("com/mirth/connect/client/**")
+    include("com/mirth/connect/plugins/**")
+    include("org/**")
+
+    manifest {
+        attributes(
+            "Main-Class" to "com.mirth.connect.client.ui.Mirth"
+        )
     }
 }
 
@@ -214,11 +213,6 @@ tasks.test {
 // Main build task
 tasks.build {
     dependsOn(buildClient)
-}
-
-// Clean task
-tasks.clean {
-    delete("dist", "classes", "test_classes", "logs")
 }
 
 // Run task for the client application
