@@ -40,6 +40,15 @@ subprojects {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    // Handle duplicate files in distributions
+    tasks.withType<Tar> {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+
+    tasks.withType<Zip> {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
     
     // Common compiler options
     tasks.withType<JavaCompile> {

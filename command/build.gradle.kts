@@ -17,20 +17,6 @@ repositories {
     }
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-// Configure duplicate handling for distribution tasks
-tasks.withType<Tar> {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
-tasks.withType<Zip> {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
 application {
     mainClass.set("com.mirth.connect.cli.launcher.CommandLineLauncher")
 }

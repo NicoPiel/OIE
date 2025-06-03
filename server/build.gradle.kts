@@ -46,11 +46,6 @@ dependencies {
     testImplementation(fileTree("testlib") { include("*.jar") })
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
 // Source sets configuration
 sourceSets {
     main {
@@ -158,8 +153,6 @@ val createClientCoreJar by tasks.registering(Jar::class) {
 // Server JAR task
 val createServerJar by tasks.registering(Jar::class) {
     dependsOn(tasks.classes, createClientCoreJar)
-    // Add explicit dependency on copyEdiXmlFiles task when it exists
-    dependsOn(tasks.named("copyEdiXmlFiles"))
     archiveFileName.set("mirth-server.jar")
     destinationDirectory.set(File(projectDir, "setup/server-lib"))
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -420,10 +413,6 @@ val datatypeTasks = mutableListOf<TaskProvider<out Task>>()
 datatypeNames.forEach { datatypeName ->
     val createDatatypeSharedJar = tasks.register<Jar>("createDatatype${datatypeName.capitalize()}SharedJar") {
             dependsOn(tasks.compileJava)
-            // Add dependency on copyEdiXmlFiles for EDI datatype
-            if (datatypeName == "edi") {
-                dependsOn("copyEdiXmlFiles")
-            }
             archiveFileName.set("datatype-${datatypeName}-shared.jar")
             destinationDirectory.set(File(projectDir, "build/extensions/datatype-${datatypeName}"))
             from(sourceSets.main.get().output)
@@ -466,10 +455,6 @@ datatypeNames.forEach { datatypeName ->
     
     val createDatatypeServerJar = tasks.register<Jar>("createDatatype${datatypeName.capitalize()}ServerJar") {
             dependsOn(tasks.compileJava)
-            // Add dependency on copyEdiXmlFiles for EDI datatype
-            if (datatypeName == "edi") {
-                dependsOn("copyEdiXmlFiles")
-            }
             archiveFileName.set("datatype-${datatypeName}-server.jar")
             destinationDirectory.set(File(projectDir, "build/extensions/datatype-${datatypeName}"))
             from(sourceSets.main.get().output)
@@ -530,6 +515,22 @@ datatypeNames.forEach { datatypeName ->
             into(File(projectDir, "build/classes/java/main/com/mirth/connect/plugins/datatypes/edi/xml"))
         }
         datatypeTasks.add(copyEdiXmlFiles)
+        
+        // Add dependency to shared and server JAR tasks for EDI
+        createDatatypeSharedJar.configure {
+            dependsOn(copyEdiXmlFiles)
+        }
+        createDatatypeServerJar.configure {
+            dependsOn(copyEdiXmlFiles)
+        }
+        
+        // Add dependency to main server JAR tasks
+        createServerJar.configure {
+            dependsOn(copyEdiXmlFiles)
+        }
+        tasks.jar {
+            dependsOn(copyEdiXmlFiles)
+        }
     }
 }
 
@@ -821,8 +822,6 @@ tasks.test {
 
 // Configure default JAR task to handle duplicates
 tasks.jar {
-    // Add explicit dependency on copyEdiXmlFiles task
-    dependsOn("copyEdiXmlFiles")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
