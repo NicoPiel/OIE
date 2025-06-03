@@ -9,15 +9,6 @@ application {
     applicationDefaultJvmArgs = listOf("-Xms512m", "-Xmx2048m")
 }
 
-// Handle duplicate files in distributions
-tasks.withType<Tar> {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
-tasks.withType<Zip> {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
 // Project dependencies
 dependencies {
     // Donkey dependency - use the JAR output instead of project dependency to avoid transitive deps
@@ -45,11 +36,6 @@ tasks.compileJava {
     dependsOn(":server:copySetupFiles")
     dependsOn(":server:copyExtensionsToSetup")
     dependsOn(":server:createVocabJar")
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 // Source sets configuration
