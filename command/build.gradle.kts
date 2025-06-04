@@ -4,9 +4,6 @@ plugins {
 }
 
 repositories {
-    flatDir {
-        dirs("lib", "testlib")
-    }
     // Add donkey's lib directories for transitive dependencies
     flatDir {
         dirs("../donkey/lib", "../donkey/lib/commons", "../donkey/lib/database", "../donkey/lib/guava", "../donkey/lib/xstream")
