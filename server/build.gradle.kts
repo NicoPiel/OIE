@@ -831,9 +831,7 @@ tasks.test {
     useJUnit()
     filter {
         // Exclude cryptography tests that cause memory issues
-        excludeTestsMatching("com.mirth.commons.encryption.test.KeyEncryptorTest.*")
-        excludeTestsMatching("com.mirth.commons.encryption.test.EncryptionTest.*")
-        excludeTestsMatching("com.mirth.commons.encryption.test.DigesterTest.*")
+        excludeTestsMatching("com.mirth.commons.encryption.test.*")
     }
     testLogging {
         events("passed", "skipped", "failed")

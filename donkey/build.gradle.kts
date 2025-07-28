@@ -177,11 +177,6 @@ tasks.named("clean") {
 
 // Test configuration
 tasks.test {
-    filter {
-        // Exclude all tests whose class name ends with "Tests"
-        excludeTestsMatching("*Tests")
-    }
-
     useJUnit()
     
     // JVM arguments for tests

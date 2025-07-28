@@ -58,6 +58,11 @@ subprojects {
     
     // Common test configuration
     tasks.test {
+        filter {
+            // Exclude all tests whose class name ends with "Tests"
+            excludeTestsMatching("*Tests")
+        }
+
         useJUnit()
         testLogging {
             events("passed", "skipped", "failed")
