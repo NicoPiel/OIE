@@ -60,7 +60,7 @@ subprojects {
     tasks.test {
         filter {
             // Exclude all tests whose class name ends with "Tests"
-            excludeTestsMatching("*Tests")
+            includeTestsMatching("*Test")
         }
 
         useJUnit()
