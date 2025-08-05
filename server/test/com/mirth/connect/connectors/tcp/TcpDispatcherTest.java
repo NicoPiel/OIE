@@ -303,8 +303,8 @@ public class TcpDispatcherTest {
         	}
         }
         
-        assertEquals(new Integer(2), successfulSends);
-        assertEquals(new Integer(2), numberOfClients);
+        assertEquals(Integer.valueOf(2), successfulSends);
+        assertEquals(Integer.valueOf(2), numberOfClients);
 	}
 	
 	/*
@@ -350,9 +350,9 @@ public class TcpDispatcherTest {
         		assertEquals(TEST_MESSAGE_TEMPLATE, socketResult.get("result" + entry.getKey()));
         	}
         }
-        
-        assertEquals(new Integer(2), successfulSends);
-        assertEquals(new Integer(2), numberOfClients);
+
+        assertEquals(Integer.valueOf(2), successfulSends);
+        assertEquals(Integer.valueOf(2), numberOfClients);
 	}
 	
 	/*
@@ -389,8 +389,8 @@ public class TcpDispatcherTest {
         Integer numberOfClients = (Integer) message.getConnectorMap().get(CONNECTOR_MAP_NO_OF_CLIENTS_KEY);
         Integer successfulSends = (Integer) message.getConnectorMap().get(CONNECTOR_MAP_SUCCESSFUL_SENDS_KEY);
 
-        assertEquals(new Integer(1), successfulSends);
-        assertEquals(new Integer(1), numberOfClients);
+        assertEquals(Integer.valueOf(1), successfulSends);
+        assertEquals(Integer.valueOf(1), numberOfClients);
 	}
 	
 	/*
@@ -413,8 +413,8 @@ public class TcpDispatcherTest {
         Integer successfulSends = (Integer) message.getConnectorMap().get(CONNECTOR_MAP_SUCCESSFUL_SENDS_KEY);
         
         assertEquals(Status.QUEUED, response.getStatus());
-        assertEquals(new Integer(0), successfulSends);
-        assertEquals(new Integer(0), numberOfClients);
+        assertEquals(Integer.valueOf(0), successfulSends);
+        assertEquals(Integer.valueOf(0), numberOfClients);
 	}
 	
 	/*
@@ -457,8 +457,8 @@ public class TcpDispatcherTest {
         Integer successfulSends = (Integer) message.getConnectorMap().get(CONNECTOR_MAP_SUCCESSFUL_SENDS_KEY);
         
         assertEquals(Status.QUEUED, response.getStatus());
-        assertEquals(new Integer(0), successfulSends);
-        assertEquals(new Integer(0), numberOfClients);
+        assertEquals(Integer.valueOf(0), successfulSends);
+        assertEquals(Integer.valueOf(0), numberOfClients);
 	}
 	
 	/*
@@ -501,8 +501,8 @@ public class TcpDispatcherTest {
         Integer successfulSends = (Integer) message.getConnectorMap().get(CONNECTOR_MAP_SUCCESSFUL_SENDS_KEY);
         
         assertEquals(Status.QUEUED, response.getStatus());
-        assertEquals(new Integer(0), successfulSends);
-        assertEquals(new Integer(0), numberOfClients);
+        assertEquals(Integer.valueOf(0), successfulSends);
+        assertEquals(Integer.valueOf(0), numberOfClients);
 	}
 	
 	/*
@@ -616,8 +616,8 @@ public class TcpDispatcherTest {
         
         log(message.getConnectorMap().get(CONNECTOR_MAP_ALL_RESPONSES_KEY));
         assertEquals(Status.SENT, response.getStatus());
-        assertEquals(new Integer(2), successfulSends);
-        assertEquals(new Integer(3), numberOfClients);
+        assertEquals(Integer.valueOf(2), successfulSends);
+        assertEquals(Integer.valueOf(3), numberOfClients);
 	}
 	
 	@Test

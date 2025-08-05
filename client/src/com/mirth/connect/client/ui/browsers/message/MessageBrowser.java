@@ -968,11 +968,11 @@ public class MessageBrowser extends javax.swing.JPanel {
                         }
 
                         if (!messages.hasNextPage()) {
-                            messages.setItemCount(new Long(((retrievedPageNumber - 1) * messages.getPageSize()) + messages.size()));
+                            messages.setItemCount(Long.valueOf(((retrievedPageNumber - 1) * messages.getPageSize()) + messages.size()));
                             enableCountButton = false;
                         }
                     } else {
-                        messages.setItemCount(new Long((retrievedPageNumber - 1) * messages.getPageSize()));
+                        messages.setItemCount(Long.valueOf((retrievedPageNumber - 1) * messages.getPageSize()));
                         enableCountButton = false;
                         pageNumberField.setText("0");
                     }
