@@ -1,6 +1,7 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useReactTable, getCoreRowModel, getExpandedRowModel, flexRender, type ColumnDef } from "@tanstack/react-table";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import type { components } from "oieapi-types/index.d.ts";
 import { Client } from "../../services/Services";
 import css from "./DashboardList.module.scss";
@@ -13,6 +14,7 @@ export const CHANNEL_LIST_QUERY_KEY = 'channelList';
 
 type DashboardStatusDTO = components["schemas"]["DashboardStatus"];
 type DashboardChannelInfoDTO = components["schemas"]["DashboardChannelInfo"];
+type ChannelGroupDTO = components["schemas"]["ChannelGroup"];
 
 function buildFilterString(prefs: FilterPreferences): string | undefined {
     const text = prefs.textFilter?.trim();
@@ -21,14 +23,13 @@ function buildFilterString(prefs: FilterPreferences): string | undefined {
 }
 
 async function getDashboardData(prefs: FilterPreferences) {
+    const filter = buildFilterString(prefs);
+
     // Fetch initial statuses + metadata concurrently
     const [initialRes, groupsRes, tagsRes] = await Promise.all([
         Client.GET("/channels/statuses/initial", {
             params: {
-                query: {
-                    fetchSize: 100,
-                    filter: buildFilterString(prefs)
-                }
+                query: filter ? { fetchSize: 100, filter } : { fetchSize: 100 },
             }
         }),
         Client.GET("/channelgroups"),
@@ -51,14 +52,12 @@ async function getDashboardData(prefs: FilterPreferences) {
     const CHUNK_SIZE = 100;
     while (remaining.length > 0) {
         const chunk = remaining.splice(0, CHUNK_SIZE);
-        const { data: moreStatuses } = await Client.GET("/channels/statuses", {
+        // Use POST variant with array body (per OpenAPI: body is string[])
+        const { data: moreStatuses } = await Client.POST("/channels/statuses/_getChannelStatusList", {
             params: {
-                query: {
-                    channelId: chunk,
-                    includeUndeployed: false,
-                    filter: buildFilterString(prefs),
-                }
-            }
+                query: filter ? { includeUndeployed: false, filter } : { includeUndeployed: false },
+            },
+            body: chunk,
         });
         if (moreStatuses) {
             statuses.push(...(moreStatuses as DashboardStatusDTO[]));
@@ -84,18 +83,27 @@ interface FilterPreferences {
     useGroups: boolean;
     statsMode: StatisticsDisplayMode;
     tagDisplayMode: TagDisplayMode;
+    autoRefresh: boolean;
 }
 
 function getPrefs(): FilterPreferences {
     const saved = localStorage.getItem(DASHBOARD_PREFS_KEY);
     if (saved) {
-        return JSON.parse(saved) as FilterPreferences;
+        const parsed = JSON.parse(saved) as Partial<FilterPreferences>;
+        return {
+            textFilter: parsed.textFilter ?? '',
+            useGroups: parsed.useGroups ?? true,
+            statsMode: (parsed.statsMode ?? 'Current') as StatisticsDisplayMode,
+            tagDisplayMode: (parsed.tagDisplayMode ?? 'Icons') as TagDisplayMode,
+            autoRefresh: parsed.autoRefresh ?? true,
+        };
     }
     return {
         textFilter: '',
         useGroups: true,
         statsMode: 'Current' as StatisticsDisplayMode,
         tagDisplayMode: 'Icons' as TagDisplayMode,
+        autoRefresh: true,
     };
 }
 
@@ -112,6 +120,7 @@ export function DashboardList() {
     const { data: dashboard } = useQuery({
         queryKey: [CHANNEL_LIST_QUERY_KEY, prefs.textFilter, prefs.statsMode],
         queryFn: () => getDashboardData(prefs),
+        refetchInterval: prefs.autoRefresh ? 30000 : false,
     });
 
     const toggleTagDisplayMode = (button: TagDisplayMode) => {
@@ -127,6 +136,7 @@ export function DashboardList() {
     // Build hierarchical rows for TanStack Table
     type RowType = {
         key: string;
+        channelId?: string;
         statusType?: string | null;
         state?: string | null;
         name?: string | null;
@@ -146,6 +156,7 @@ export function DashboardList() {
         const sm: Record<string, number> = (statsMap ?? {}) as unknown as Record<string, number>;
         return {
             key: String(s.key ?? s.channelId ?? Math.random()),
+            channelId: s.channelId ?? undefined,
             statusType: s.statusType ?? null,
             state: (s.state as unknown as string) ?? null,
             name: s.name ?? null,
@@ -165,6 +176,39 @@ export function DashboardList() {
         const source = (dashboard?.statuses as DashboardStatusDTO[]) || [];
         return source.map(toRow);
     }, [dashboard?.statuses, prefs.statsMode]);
+
+    const dataRows = useMemo<RowType[]>(() => {
+        if (!prefs.useGroups) return rows;
+
+        const groups = (dashboard?.groups as ChannelGroupDTO[]) || [];
+        if (!groups.length) {
+            // No groups defined on server: fall back to flat channel list
+            return rows;
+        }
+
+        const byChannel = new Map<string, RowType>();
+        rows.forEach(r => { if (r.channelId) byChannel.set(r.channelId, r); });
+
+        const out: RowType[] = [];
+        for (const g of groups) {
+            const channelIds: string[] = (g.channels ?? []).map(c => c.id!) as string[];
+            const subRows = channelIds.map(id => byChannel.get(id)).filter(Boolean) as RowType[];
+            if (subRows.length === 0) continue;
+
+            const groupRow: RowType = {
+                key: `group_${g.id}`,
+                name: g.name ?? 'Group',
+                received: subRows.reduce((a, r) => a + (r.received ?? 0), 0),
+                filtered: subRows.reduce((a, r) => a + (r.filtered ?? 0), 0),
+                queued: subRows.reduce((a, r) => a + (r.queued ?? 0), 0),
+                sent: subRows.reduce((a, r) => a + (r.sent ?? 0), 0),
+                error: subRows.reduce((a, r) => a + (r.error ?? 0), 0),
+                subRows,
+            };
+            out.push(groupRow);
+        }
+        return out;
+    }, [rows, prefs.useGroups, dashboard?.groups]);
 
     const columns = useMemo<ColumnDef<RowType>[]>(() => [
         {
@@ -200,18 +244,27 @@ export function DashboardList() {
     ], []);
 
     const table = useReactTable({
-        data: rows,
+        data: dataRows,
         columns,
         getCoreRowModel: getCoreRowModel(),
         getExpandedRowModel: getExpandedRowModel(),
         getSubRows: (row) => row.subRows,
     });
 
-    const groupsCount = (dashboard && Array.isArray(dashboard.groups)) ? dashboard.groups.length : 0;
+    const parentRef = useRef<HTMLDivElement>(null);
+    const rowVirtualizer = useVirtualizer({
+        count: table.getRowModel().rows.length,
+        getScrollElement: () => parentRef.current,
+        estimateSize: () => 28,
+        overscan: 10,
+    });
+    const virtualRows = rowVirtualizer.getVirtualItems();
+
+    const groupsCount = prefs.useGroups ? ((dashboard?.groups as ChannelGroupDTO[] | undefined)?.length ?? 0) : 0;
     const deployedCount = dashboard?.deployedChannelCount ?? rows.length;
 
     return <div className={`card p-2 ${css.dashboardListCard}`}>
-        <div className={css.dashboardList}>
+        <div className={css.dashboardList} ref={parentRef}>
             {!dashboard ? (
                 <span>Loading...</span>
             ) : (
@@ -228,15 +281,40 @@ export function DashboardList() {
                         ))}
                     </thead>
                     <tbody>
-                        {table.getRowModel().rows.map(row => (
-                            <tr key={row.id}>
-                                {row.getVisibleCells().map(cell => (
-                                    <td key={cell.id} style={cell.column.id === 'expander' ? { paddingLeft: `${row.depth * 16}px` } : undefined}>
-                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                    </td>
+                        {virtualRows.length === 0 ? (
+                            <>
+                                {table.getRowModel().rows.map(row => (
+                                    <tr key={row.id}>
+                                        {row.getVisibleCells().map(cell => (
+                                            <td key={cell.id} style={cell.column.id === 'expander' ? { paddingLeft: `${row.depth * 16}px` } : undefined}>
+                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                            </td>
+                                        ))}
+                                    </tr>
                                 ))}
-                            </tr>
-                        ))}
+                            </>
+                        ) : (
+                            <>
+                                <tr>
+                                    <td colSpan={table.getVisibleFlatColumns().length} style={{ height: virtualRows[0].start }} />
+                                </tr>
+                                {virtualRows.map(virtualRow => {
+                                    const row = table.getRowModel().rows[virtualRow.index];
+                                    return (
+                                        <tr key={row.id} style={{ height: virtualRow.size }}>
+                                            {row.getVisibleCells().map(cell => (
+                                                <td key={cell.id} style={cell.column.id === 'expander' ? { paddingLeft: `${row.depth * 16}px` } : undefined}>
+                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                                </td>
+                                            ))}
+                                        </tr>
+                                    );
+                                })}
+                                <tr>
+                                    <td colSpan={table.getVisibleFlatColumns().length} style={{ height: rowVirtualizer.getTotalSize() - virtualRows[virtualRows.length - 1].end }} />
+                                </tr>
+                            </>
+                        )}
                     </tbody>
                 </table>
             )}
@@ -265,6 +343,12 @@ export function DashboardList() {
                 <input type="radio" id="dashboard-stats-mode-lifetime" value="Lifetime" name="dashboard-stats-mode"
                     checked={prefs.statsMode === 'Lifetime'} onChange={() => setPrefs({ statsMode: 'Lifetime' })} />
                 <label htmlFor="dashboard-stats-mode-lifetime" className="ms-1 me-2">Lifetime Statistics</label>
+
+                <div className="form-check form-switch ms-3">
+                    <input className="form-check-input" type="checkbox" id="auto-refresh-toggle"
+                        checked={prefs.autoRefresh} onChange={() => setPrefs({ autoRefresh: !prefs.autoRefresh })} />
+                    <label className="form-check-label ms-1" htmlFor="auto-refresh-toggle">Auto Refresh</label>
+                </div>
             </div>
 
             <div className={css.separator} />
