@@ -9,7 +9,7 @@ import serverIcon from '../../assets/icons/server.png';
 
 export const CHANNEL_LIST_QUERY_KEY = 'channelList';
 
-async function getDashboardData(prefs: FilterPreferences) {
+async function getDashboardData(/*prefs: FilterPreferences*/) {
     const { data: groups } = await Client.GET("/channelgroups");
     if (!groups) throw new Error("Failed to fetch channel groups");
 
@@ -62,7 +62,7 @@ export function DashboardList() {
 
     const { data: channels } = useQuery({
         queryKey: [CHANNEL_LIST_QUERY_KEY],
-        queryFn: () => getDashboardData(prefs),
+        queryFn: () => getDashboardData(/*prefs*/),
     });
 
     const toggleTagDisplayMode = (button: TagDisplayMode) => {
