@@ -52,12 +52,14 @@ async function getDashboardData(prefs: FilterPreferences) {
     const CHUNK_SIZE = 100;
     while (remaining.length > 0) {
         const chunk = remaining.splice(0, CHUNK_SIZE);
-        // Use POST variant with array body (per OpenAPI: body is string[])
-        const { data: moreStatuses } = await Client.POST("/channels/statuses/_getChannelStatusList", {
+        const { data: moreStatuses } = await Client.GET("/channels/statuses", {
             params: {
-                query: filter ? { includeUndeployed: false, filter } : { includeUndeployed: false },
+                query: {
+                    channelId: chunk,
+                    includeUndeployed: false,
+                    ...(filter ? { filter } : {}),
+                },
             },
-            body: chunk,
         });
         if (moreStatuses) {
             statuses.push(...(moreStatuses as DashboardStatusDTO[]));
@@ -84,6 +86,7 @@ interface FilterPreferences {
     statsMode: StatisticsDisplayMode;
     tagDisplayMode: TagDisplayMode;
     autoRefresh: boolean;
+    autoRefreshMs: number;
 }
 
 function getPrefs(): FilterPreferences {
@@ -96,6 +99,7 @@ function getPrefs(): FilterPreferences {
             statsMode: (parsed.statsMode ?? 'Current') as StatisticsDisplayMode,
             tagDisplayMode: (parsed.tagDisplayMode ?? 'Icons') as TagDisplayMode,
             autoRefresh: parsed.autoRefresh ?? true,
+            autoRefreshMs: typeof parsed.autoRefreshMs === 'number' ? parsed.autoRefreshMs : 30000,
         };
     }
     return {
@@ -104,6 +108,7 @@ function getPrefs(): FilterPreferences {
         statsMode: 'Current' as StatisticsDisplayMode,
         tagDisplayMode: 'Icons' as TagDisplayMode,
         autoRefresh: true,
+        autoRefreshMs: 30000,
     };
 }
 
@@ -118,9 +123,9 @@ export function DashboardList() {
     }, []);
 
     const { data: dashboard } = useQuery({
-        queryKey: [CHANNEL_LIST_QUERY_KEY, prefs.textFilter, prefs.statsMode],
+        queryKey: [CHANNEL_LIST_QUERY_KEY, prefs.textFilter, prefs.statsMode, prefs.autoRefreshMs],
         queryFn: () => getDashboardData(prefs),
-        refetchInterval: prefs.autoRefresh ? 30000 : false,
+        refetchInterval: prefs.autoRefresh ? prefs.autoRefreshMs : false,
     });
 
     const toggleTagDisplayMode = (button: TagDisplayMode) => {
@@ -177,13 +182,25 @@ export function DashboardList() {
         return source.map(toRow);
     }, [dashboard?.statuses, prefs.statsMode]);
 
+    const serverGroups = (dashboard?.groups as ChannelGroupDTO[] | undefined) ?? [];
+
     const dataRows = useMemo<RowType[]>(() => {
         if (!prefs.useGroups) return rows;
 
-        const groups = (dashboard?.groups as ChannelGroupDTO[]) || [];
+        const groups = serverGroups;
         if (!groups.length) {
-            // No groups defined on server: fall back to flat channel list
-            return rows;
+            // No groups created on server: show a synthetic "Default" group containing all channels
+            const agg: RowType = {
+                key: 'group_default',
+                name: 'Default',
+                received: rows.reduce((a, r) => a + (r.received ?? 0), 0),
+                filtered: rows.reduce((a, r) => a + (r.filtered ?? 0), 0),
+                queued: rows.reduce((a, r) => a + (r.queued ?? 0), 0),
+                sent: rows.reduce((a, r) => a + (r.sent ?? 0), 0),
+                error: rows.reduce((a, r) => a + (r.error ?? 0), 0),
+                subRows: rows,
+            };
+            return [agg];
         }
 
         const byChannel = new Map<string, RowType>();
@@ -193,7 +210,6 @@ export function DashboardList() {
         for (const g of groups) {
             const channelIds: string[] = (g.channels ?? []).map(c => c.id!) as string[];
             const subRows = channelIds.map(id => byChannel.get(id)).filter(Boolean) as RowType[];
-            if (subRows.length === 0) continue;
 
             const groupRow: RowType = {
                 key: `group_${g.id}`,
@@ -207,8 +223,9 @@ export function DashboardList() {
             };
             out.push(groupRow);
         }
+
         return out;
-    }, [rows, prefs.useGroups, dashboard?.groups]);
+    }, [rows, prefs.useGroups, serverGroups]);
 
     const columns = useMemo<ColumnDef<RowType>[]>(() => [
         {
@@ -260,7 +277,7 @@ export function DashboardList() {
     });
     const virtualRows = rowVirtualizer.getVirtualItems();
 
-    const groupsCount = prefs.useGroups ? ((dashboard?.groups as ChannelGroupDTO[] | undefined)?.length ?? 0) : 0;
+    const groupsCount = prefs.useGroups ? serverGroups.length || dataRows.length : 0;
     const deployedCount = dashboard?.deployedChannelCount ?? rows.length;
 
     return <div className={`card p-2 ${css.dashboardListCard}`}>
@@ -349,6 +366,20 @@ export function DashboardList() {
                         checked={prefs.autoRefresh} onChange={() => setPrefs({ autoRefresh: !prefs.autoRefresh })} />
                     <label className="form-check-label ms-1" htmlFor="auto-refresh-toggle">Auto Refresh</label>
                 </div>
+                <label htmlFor="auto-refresh-interval" className="ms-2 me-2">Interval (s):</label>
+                <input
+                    id="auto-refresh-interval"
+                    className="form-control d-inline-block"
+                    type="number"
+                    min={5}
+                    step={5}
+                    style={{ width: '6rem' }}
+                    value={Math.max(5, Math.round(prefs.autoRefreshMs / 1000))}
+                    onChange={(e) => {
+                        const seconds = Math.max(5, parseInt(e.target.value || '30', 10));
+                        setPrefs({ autoRefreshMs: seconds * 1000 });
+                    }}
+                />
             </div>
 
             <div className={css.separator} />
