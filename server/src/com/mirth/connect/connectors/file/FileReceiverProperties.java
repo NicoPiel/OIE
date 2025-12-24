@@ -22,7 +22,10 @@ import com.mirth.connect.donkey.util.DonkeyElement;
 import com.mirth.connect.donkey.util.purge.PurgeUtil;
 import com.mirth.connect.util.CharsetUtils;
 
-public class FileReceiverProperties extends ConnectorProperties implements PollConnectorPropertiesInterface, SourceConnectorPropertiesInterface {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public class FileReceiverProperties extends ConnectorProperties
+        implements PollConnectorPropertiesInterface, SourceConnectorPropertiesInterface {
 
     public static final String NAME = "File Reader";
 
@@ -106,6 +109,12 @@ public class FileReceiverProperties extends ConnectorProperties implements PollC
         this.scheme = scheme;
     }
 
+    @Schema(description = "File connector scheme-specific properties.", oneOf = {
+            FTPSchemeProperties.class,
+            SftpSchemeProperties.class,
+            S3SchemeProperties.class,
+            SmbSchemeProperties.class
+    })
     public SchemeProperties getSchemeProperties() {
         return schemeProperties;
     }
@@ -381,7 +390,8 @@ public class FileReceiverProperties extends ConnectorProperties implements PollC
     }
 
     @Override
-    public void migrate3_2_0(DonkeyElement element) {}
+    public void migrate3_2_0(DonkeyElement element) {
+    }
 
     @Override
     public void migrate3_3_0(DonkeyElement element) {
@@ -406,10 +416,10 @@ public class FileReceiverProperties extends ConnectorProperties implements PollC
     @Override public void migrate3_5_0(DonkeyElement element) {}
     @Override public void migrate3_6_0(DonkeyElement element) {}
     @Override public void migrate3_7_0(DonkeyElement element) {} // @formatter:on
-    
+
     @Override
     public void migrate3_9_0(DonkeyElement element) {
-    	if (element.getChildElement("scheme").getTextContent().equalsIgnoreCase("smb")) {
+        if (element.getChildElement("scheme").getTextContent().equalsIgnoreCase("smb")) {
             DonkeyElement schemeProperties = element.addChildElementIfNotExists("schemeProperties");
             if (schemeProperties != null) {
                 schemeProperties.setAttribute("class", "com.mirth.connect.connectors.file.SmbSchemeProperties");
@@ -418,7 +428,7 @@ public class FileReceiverProperties extends ConnectorProperties implements PollC
             }
         }
     }
-    
+
     // @formatter:off
     @Override public void migrate3_11_0(DonkeyElement element) {} 
     @Override public void migrate3_11_1(DonkeyElement element) {} 

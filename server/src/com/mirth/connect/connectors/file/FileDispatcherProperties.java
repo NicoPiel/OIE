@@ -20,6 +20,8 @@ import com.mirth.connect.donkey.util.DonkeyElement;
 import com.mirth.connect.donkey.util.purge.PurgeUtil;
 import com.mirth.connect.util.CharsetUtils;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class FileDispatcherProperties extends ConnectorProperties implements DestinationConnectorPropertiesInterface {
     public static final String NAME = "File Writer";
 
@@ -107,6 +109,12 @@ public class FileDispatcherProperties extends ConnectorProperties implements Des
         this.scheme = scheme;
     }
 
+    @Schema(description = "File connector scheme-specific properties.", oneOf = {
+            FTPSchemeProperties.class,
+            SftpSchemeProperties.class,
+            S3SchemeProperties.class,
+            SmbSchemeProperties.class
+    })
     public SchemeProperties getSchemeProperties() {
         return schemeProperties;
     }
@@ -347,7 +355,8 @@ public class FileDispatcherProperties extends ConnectorProperties implements Des
     }
 
     @Override
-    public void migrate3_2_0(DonkeyElement element) {}
+    public void migrate3_2_0(DonkeyElement element) {
+    }
 
     @Override
     public void migrate3_3_0(DonkeyElement element) {
@@ -377,10 +386,10 @@ public class FileDispatcherProperties extends ConnectorProperties implements Des
         element.addChildElementIfNotExists("keepConnectionOpen", "true");
         element.addChildElementIfNotExists("maxIdleTime", "0");
     }
-    
+
     @Override
     public void migrate3_9_0(DonkeyElement element) {
-    	if (element.getChildElement("scheme").getTextContent().equalsIgnoreCase("smb")) {
+        if (element.getChildElement("scheme").getTextContent().equalsIgnoreCase("smb")) {
             DonkeyElement schemeProperties = element.addChildElementIfNotExists("schemeProperties");
             if (schemeProperties != null) {
                 schemeProperties.setAttribute("class", "com.mirth.connect.connectors.file.SmbSchemeProperties");
@@ -389,7 +398,7 @@ public class FileDispatcherProperties extends ConnectorProperties implements Des
             }
         }
     }
-    
+
     // @formatter:off
     @Override public void migrate3_11_0(DonkeyElement element) {} 
     @Override public void migrate3_11_1(DonkeyElement element) {} 
