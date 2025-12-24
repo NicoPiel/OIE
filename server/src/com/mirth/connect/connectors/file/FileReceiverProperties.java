@@ -390,8 +390,7 @@ public class FileReceiverProperties extends ConnectorProperties
     }
 
     @Override
-    public void migrate3_2_0(DonkeyElement element) {
-    }
+    public void migrate3_2_0(DonkeyElement element) {}
 
     @Override
     public void migrate3_3_0(DonkeyElement element) {
@@ -416,10 +415,10 @@ public class FileReceiverProperties extends ConnectorProperties
     @Override public void migrate3_5_0(DonkeyElement element) {}
     @Override public void migrate3_6_0(DonkeyElement element) {}
     @Override public void migrate3_7_0(DonkeyElement element) {} // @formatter:on
-
+    
     @Override
     public void migrate3_9_0(DonkeyElement element) {
-        if (element.getChildElement("scheme").getTextContent().equalsIgnoreCase("smb")) {
+    	if (element.getChildElement("scheme").getTextContent().equalsIgnoreCase("smb")) {
             DonkeyElement schemeProperties = element.addChildElementIfNotExists("schemeProperties");
             if (schemeProperties != null) {
                 schemeProperties.setAttribute("class", "com.mirth.connect.connectors.file.SmbSchemeProperties");
@@ -428,7 +427,7 @@ public class FileReceiverProperties extends ConnectorProperties
             }
         }
     }
-
+    
     // @formatter:off
     @Override public void migrate3_11_0(DonkeyElement element) {} 
     @Override public void migrate3_11_1(DonkeyElement element) {} 

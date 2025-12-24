@@ -355,8 +355,7 @@ public class FileDispatcherProperties extends ConnectorProperties implements Des
     }
 
     @Override
-    public void migrate3_2_0(DonkeyElement element) {
-    }
+    public void migrate3_2_0(DonkeyElement element) {}
 
     @Override
     public void migrate3_3_0(DonkeyElement element) {
@@ -386,10 +385,10 @@ public class FileDispatcherProperties extends ConnectorProperties implements Des
         element.addChildElementIfNotExists("keepConnectionOpen", "true");
         element.addChildElementIfNotExists("maxIdleTime", "0");
     }
-
+    
     @Override
     public void migrate3_9_0(DonkeyElement element) {
-        if (element.getChildElement("scheme").getTextContent().equalsIgnoreCase("smb")) {
+    	if (element.getChildElement("scheme").getTextContent().equalsIgnoreCase("smb")) {
             DonkeyElement schemeProperties = element.addChildElementIfNotExists("schemeProperties");
             if (schemeProperties != null) {
                 schemeProperties.setAttribute("class", "com.mirth.connect.connectors.file.SmbSchemeProperties");
@@ -398,7 +397,7 @@ public class FileDispatcherProperties extends ConnectorProperties implements Des
             }
         }
     }
-
+    
     // @formatter:off
     @Override public void migrate3_11_0(DonkeyElement element) {} 
     @Override public void migrate3_11_1(DonkeyElement element) {} 
