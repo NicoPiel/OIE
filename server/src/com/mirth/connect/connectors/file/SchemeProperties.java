@@ -13,9 +13,25 @@ import java.io.Serializable;
 
 import com.mirth.connect.donkey.util.purge.Purgable;
 
-public abstract class SchemeProperties implements Serializable, Purgable {
-    public SchemeProperties() {}
+import io.swagger.v3.oas.annotations.media.Schema;
 
+@Schema(description = "File connector scheme-specific properties. Serialized as a concrete subtype.", oneOf = {
+        FTPSchemeProperties.class,
+        SftpSchemeProperties.class,
+        S3SchemeProperties.class,
+        SmbSchemeProperties.class
+})
+public abstract class SchemeProperties implements Serializable, Purgable {
+    public SchemeProperties() {
+    }
+
+    /**
+     * Internal helper used by the file connector implementation.
+     *
+     * IMPORTANT: Hide from OpenAPI to avoid generating a self-referential schema
+     * ("fileSchemeProperties" -> SchemeProperties).
+     */
+    @Schema(hidden = true)
     public abstract SchemeProperties getFileSchemeProperties();
 
     public abstract String getSummaryText();
