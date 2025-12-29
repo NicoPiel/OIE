@@ -58,7 +58,7 @@ dependencies {
     implementation(":derby-10.10.2.0")
     implementation(":jtds-1.3.1")
     implementation(":mssql-jdbc-8.4.1.jre8")
-    implementation(":mysql-connector-j-8.2.0")
+    implementation(":mysql-connector-j-8.4.0")
     implementation(":ojdbc8-12.2.0.1")
     implementation(":postgresql-42.6.0")
     
@@ -66,7 +66,7 @@ dependencies {
     implementation(":checker-qual-2.10.0")
     implementation(":error_prone_annotations-2.3.4")
     implementation(":failureaccess-1.0.1")
-    implementation(":guava-28.2-jre")
+    implementation(":guava-32.0.1-jre")
     implementation(":j2objc-annotations-1.3")
     implementation(":jsr305-3.0.2")
     implementation(":listenablefuture-9999.0-empty-to-avoid-conflict-with-guava")
@@ -77,9 +77,9 @@ dependencies {
     
     // Test dependencies
     testImplementation(":junit-4.8.1")
-    testImplementation(":mockito-core-2.7.9")
-    testImplementation(":byte-buddy-1.8.8")
-    testImplementation(":byte-buddy-agent-1.8.8")
+    testImplementation(":mockito-core-5.1.1")
+    testImplementation(":byte-buddy-1.14.13")
+    testImplementation(":byte-buddy-agent-1.14.13")
     testImplementation(":objenesis-2.5.1")
     testImplementation(":aopalliance-repackaged-2.4.0-b31")
     testImplementation(":javax.inject-2.4.0-b31")
