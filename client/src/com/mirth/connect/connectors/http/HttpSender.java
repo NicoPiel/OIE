@@ -74,10 +74,9 @@ import com.mirth.connect.util.ConnectionTestResponse;
 public class HttpSender extends ConnectorSettingsPanel {
 
     private static final Color COLOR_SSL_NOT_CONFIGURED = new Color(0xFFF099);
-    private static final String SSL_TOOL_TIP = """
-        <html>Compatible TLS plugin not detected. The java system trust store will be<br/>
-        used for this connection. TLS security options and mutual<br/>
-        authentication (mTLS) are not configurable through this interface.</html>""";
+    private static final String SSL_TOOL_TIP = "<html>Compatible TLS plugin not detected. The java system trust store will be<br/>" +
+        "used for this connection. TLS security options and mutual<br/>" +
+        "authentication (mTLS) are not configurable through this interface.</html>";
 
     private final int NAME_COLUMN = 0;
     private final int VALUE_COLUMN = 1;

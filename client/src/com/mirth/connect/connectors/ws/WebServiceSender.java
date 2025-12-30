@@ -83,10 +83,9 @@ import com.mirth.connect.util.ConnectionTestResponse;
 public class WebServiceSender extends ConnectorSettingsPanel {
 
     protected static final Color COLOR_SSL_NOT_CONFIGURED = new Color(0xFFF099);
-    protected static final String SSL_TOOL_TIP = """
-        <html>Compatible TLS plugin not detected. The java system trust store will be<br/>
-        used for this connection. TLS security options and mutual<br/>
-        authentication (mTLS) are not configurable through this interface.</html>""";
+    protected static final String SSL_TOOL_TIP = "<html>Compatible TLS plugin not detected. The java system trust store will be<br/>" +
+        "used for this connection. TLS security options and mutual<br/>" +
+        "authentication (mTLS) are not configurable through this interface.</html>";
 
     private final int ID_COLUMN_NUMBER = 0;
     private final int CONTENT_COLUMN_NUMBER = 1;
