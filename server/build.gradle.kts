@@ -71,8 +71,7 @@ sourceSets {
             srcDirs("test")
         }
         resources {
-            srcDirs("test")
-            include("**/*.xml")
+            srcDirs("test/resources")
         }
     }
 }
@@ -829,6 +828,16 @@ val createSetup by tasks.registering {
 tasks.test {
     dependsOn(createSetup)
     useJUnit()
+    jvmArgs(
+        "--add-exports", "java.xml/com.sun.org.apache.xalan.internal.xsltc.trax=ALL-UNNAMED",
+        "--add-opens", "java.sql.rowset/com.sun.rowset=ALL-UNNAMED",
+        "--add-opens", "java.sql.rowset/javax.sql.rowset=ALL-UNNAMED",
+        "--add-opens", "java.sql.rowset/com.sun.rowset.providers=ALL-UNNAMED",
+        "--add-opens", "java.sql.rowset/com.sun.rowset.internal=ALL-UNNAMED",
+        "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+        "--add-opens", "java.sql/java.sql=ALL-UNNAMED",
+        "--add-opens", "java.base/java.util=ALL-UNNAMED"
+    )
     filter {
         // Exclude cryptography tests that cause memory issues
         excludeTestsMatching("com.mirth.commons.encryption.test.*")
