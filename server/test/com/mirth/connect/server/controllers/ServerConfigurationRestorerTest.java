@@ -80,7 +80,7 @@ public class ServerConfigurationRestorerTest {
             // Ignore if it has already been initialized
         }
 
-        config1 = serializer.deserialize(IOUtils.toString(ServerConfigurationRestorerTest.class.getResourceAsStream("Config 1.xml")), ServerConfiguration.class);
+        config1 = serializer.deserialize(IOUtils.toString(ServerConfigurationRestorerTest.class.getClassLoader().getResourceAsStream("Config 1.xml")), ServerConfiguration.class);
     }
 
     @Test

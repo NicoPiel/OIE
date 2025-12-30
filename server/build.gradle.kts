@@ -71,8 +71,7 @@ sourceSets {
             srcDirs("test")
         }
         resources {
-            srcDirs("test")
-            include("**/*.xml")
+            srcDirs("test/resources")
         }
     }
 }
@@ -202,7 +201,7 @@ val createLauncherJar by tasks.registering(Jar::class) {
     manifest {
         attributes(
             "Main-Class" to "com.mirth.connect.server.launcher.MirthLauncher",
-            "Class-Path" to "server-lib/commons/commons-io-2.13.0.jar server-lib/commons/commons-configuration2-2.8.0.jar server-lib/commons/commons-lang3-3.13.0.jar server-lib/commons/commons-logging-1.2.jar server-lib/commons/commons-beanutils-1.9.4.jar server-lib/commons/commons-text-1.10.0.jar server-lib/commons/commons-collections-3.2.2.jar conf/"
+            "Class-Path" to "server-lib/commons/commons-io-2.13.0.jar server-lib/commons/commons-configuration2-2.8.0.jar server-lib/commons/commons-lang3-3.20.0.jar server-lib/commons/commons-logging-1.2.jar server-lib/commons/commons-beanutils-1.9.4.jar server-lib/commons/commons-text-1.15.0.jar server-lib/commons/commons-collections-3.2.2.jar conf/"
         )
     }
 }
@@ -829,6 +828,16 @@ val createSetup by tasks.registering {
 tasks.test {
     dependsOn(createSetup)
     useJUnit()
+    jvmArgs(
+        "--add-exports", "java.xml/com.sun.org.apache.xalan.internal.xsltc.trax=ALL-UNNAMED",
+        "--add-opens", "java.sql.rowset/com.sun.rowset=ALL-UNNAMED",
+        "--add-opens", "java.sql.rowset/javax.sql.rowset=ALL-UNNAMED",
+        "--add-opens", "java.sql.rowset/com.sun.rowset.providers=ALL-UNNAMED",
+        "--add-opens", "java.sql.rowset/com.sun.rowset.internal=ALL-UNNAMED",
+        "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+        "--add-opens", "java.sql/java.sql=ALL-UNNAMED",
+        "--add-opens", "java.base/java.util=ALL-UNNAMED"
+    )
     filter {
         // Exclude cryptography tests that cause memory issues
         excludeTestsMatching("com.mirth.commons.encryption.test.*")
